@@ -99,7 +99,7 @@
 
       
 
-      </header><script src="tutorial_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tutorial</h1>
@@ -279,7 +279,7 @@ Observed vs modelled streamflow in part of the calibration period.
 ## 
 ## Fit: ($fit.result)
 ## fitByOptim(MODEL = cotterMod, method = "PORT", samples = 100)
-##      195 function evaluations in 26.56 seconds 
+##      195 function evaluations in 27.14 seconds 
 ## 
 ## Routing fit info:  list(TRUE, 6)</code></pre>
 <p>Note one can get hold of the parameter values using <code><a href="https://rdrr.io/r/stats/coef.html">coef(cotterFit)</a></code> or <code><a href="https://rdrr.io/r/stats/coef.html">coef(cotterFit, which = "routing")</a></code> (for the unit hydrograph only).</p>
@@ -737,7 +737,7 @@ manual, which can be accessed as `vignette("hydromad")`.-->
 <code class="sourceCode R"><span class="va">pqdat</span><span class="op">$</span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/convertFlow.html">convertFlow</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">$</span><span class="va">Q</span>, from <span class="op">=</span> <span class="st">"ML"</span>, area.km2 <span class="op">=</span> <span class="fl">148</span><span class="op">)</span></code></pre></div>
 <p>For simple applications, when the data series are already synchronised, this data frame (or matrix) format may be enough. However, there are benefits in working with actual <em>time series</em> objects: because they handle observation times, they allow powerful merging, treatment of missing values, rolling averages and other functions. While <code>R</code> has a built-in structure for regular time series (<code>ts</code>), these do not handle specific dates or times, only index numbers. It is recommended to work with <code>zoo</code> objects (using the <a href="https://cran.r-project.org/package=zoo">zoo</a> package).^[<a href="https://cran.r-project.org/package=zoo">zoo</a> objects are a generalisation of <code>ts</code> objects and in many cases can be used in the same way; see <code><a href="https://cran.rstudio.com/web/packages/zoo/vignettes/zoo.pdf">vignette("zoo")</a></code>.}</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://zoo.R-Forge.R-project.org/">zoo</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://zoo.R-Forge.R-project.org/">zoo</a></span><span class="op">)</span>
 <span class="va">tsPQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/zoo.html">zoo</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="va">tsT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/zoo.html">zoo</a></span><span class="op">(</span><span class="va">tdat</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">tdat</span><span class="op">$</span><span class="va">Date</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p>We can now merge the time series together into a final dataset. Note that the <strong>hydromad</strong> package expects temperature or evapo-transpiration data to be called <code>E</code>, not <code>T</code>. <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
@@ -820,7 +820,7 @@ manual, which can be accessed as `vignette("hydromad")`.-->
 <div id="computational-details" class="section level1">
 <h1 class="hasAnchor">
 <a href="#computational-details" class="anchor"></a>Computational details</h1>
-<p>The results in this paper were obtained using <code>R</code> 4.0.4 with the packages <strong>hydromad</strong> 0.9–26, <code>zoo</code> 1.8–8 and <code>latticeExtra</code> 0.6–29. <code>R</code> itself and all packages used are (or will be) available from CRAN at <a href="http://CRAN.R-project.org/">http://CRAN.R-project.org/</a>.</p>
+<p>The results in this paper were obtained using <code>R</code> 4.0.4 with the packages <strong>hydromad</strong> 0.9–26, <code>zoo</code> 1.8–9 and <code>latticeExtra</code> 0.6–29. <code>R</code> itself and all packages used are (or will be) available from CRAN at <a href="http://CRAN.R-project.org/">http://CRAN.R-project.org/</a>.</p>
 </div>
 <div class="footnotes">
 <hr>
