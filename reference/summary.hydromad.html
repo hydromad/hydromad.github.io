@@ -254,16 +254,16 @@ calculate statistic values directly; <code>hydromad.object</code></p></div>
 #&gt; For definitions see ?hydromad.stats
 #&gt; </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod0</span>, breaks <span class='op'>=</span> <span class='st'>"months"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                     timesteps missing    mean.P    mean.Q    runoff    rel.bias
-#&gt; 2000-01-13 22:00:00       145       0 0.2482759 0.1134928 0.4571238  0.43600905
-#&gt; 2000-02-01 01:00:00       232       0 0.2586207 0.1622424 0.6273371  0.02462343
-#&gt; 2000-03-01 01:00:00       244       0 0.3196721 0.2442610 0.7640987 -0.13594022
-#&gt; 2000-03-31 10:00:00       244       0 0.3196721 0.2442610 0.7640987 -0.13594022
-#&gt;                       r.squared  r.sq.sqrt    r.sq.log
-#&gt; 2000-01-13 22:00:00 -0.01536472 -0.0460160 -0.13219337
-#&gt; 2000-02-01 01:00:00  0.22442538  0.1237344 -0.01824936
-#&gt; 2000-03-01 01:00:00  0.54562917  0.6288320  0.64163430
-#&gt; 2000-03-31 10:00:00  0.54562917  0.6288320  0.64163430</div><div class='input'><span class='co'># summary(mod0, breaks = 3)</span>
+</div><div class='output co'>#&gt;                     timesteps missing    mean.P    mean.Q    runoff   rel.bias
+#&gt; 2000-01-13 12:00:00       148       0 0.2432432 0.1128348 0.4638763  0.4241800
+#&gt; 2000-02-01 00:00:00       232       0 0.2586207 0.1612431 0.6234734  0.0359378
+#&gt; 2000-03-01 00:00:00       241       0 0.3236515 0.2472549 0.7639542 -0.1414367
+#&gt; 2000-03-31 00:00:00       241       0 0.3236515 0.2472549 0.7639542 -0.1414367
+#&gt;                       r.squared   r.sq.sqrt    r.sq.log
+#&gt; 2000-01-13 12:00:00 -0.01514814 -0.04819688 -0.13236402
+#&gt; 2000-02-01 00:00:00  0.22608518  0.12255420 -0.02928841
+#&gt; 2000-03-01 00:00:00  0.54037122  0.63470299  0.65314990
+#&gt; 2000-03-31 00:00:00  0.54037122  0.63470299  0.65314990</div><div class='input'><span class='co'># summary(mod0, breaks = 3)</span>
 
 <span class='va'>allstats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='fu'><a href='hydromad.stats.html'>hydromad.stats</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'>## Ignore r.sq.vartd because it requires event to be specified</span>

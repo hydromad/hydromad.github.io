@@ -392,15 +392,15 @@ work with models as objects (recommended).</p></div>
 #&gt; 6.0224  0.1227  
 #&gt; Routing Parameters:
 #&gt;         x2          x3          x4  
-#&gt; -0.0004503   4.6048488  -0.5108256  
+#&gt; -0.0004503   4.6048484  -0.5108256  
 #&gt; 
 #&gt; Fit: ($fit.result)
 #&gt; fitByOptim(MODEL = mod0)
-#&gt;      277 function evaluations in 6.01 seconds </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit1</span><span class='op'>)</span>
+#&gt;      277 function evaluations in 5.886 seconds </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; hydromad(DATA = x, transformed = TRUE, sma = "gr4j", routing = "gr4jrouting", 
-#&gt;     x1 = 6.02237, x2 = -0.000450293, x3 = 4.60485, x4 = -0.510826, 
+#&gt;     x1 = 6.02237, x2 = -0.00045027, x3 = 4.60485, x4 = -0.510826, 
 #&gt;     etmult = 0.122697)
 #&gt; 
 #&gt; Time steps: 900 (0 missing).
@@ -416,13 +416,13 @@ work with models as objects (recommended).</p></div>
 <span class='co'># Parameters in original parameter space</span>
 <span class='fu'><a href='gr4j.transformpar.html'>gr4j.transformpar</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>fit1</span><span class='op'>)</span>, back <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $x1
-#&gt; [1] 412.5549
+#&gt; [1] 412.555
 #&gt; 
 #&gt; $x2
-#&gt; [1] -0.0004502931
+#&gt; [1] -0.00045027
 #&gt; 
 #&gt; $x3
-#&gt; [1] 99.96787
+#&gt; [1] 99.96783
 #&gt; 
 #&gt; $x4
 #&gt; [1] 1.1

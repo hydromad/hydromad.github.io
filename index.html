@@ -126,22 +126,22 @@ install.packages("hydromad")
 <ul>
 <li>Install required packages from within R:</li>
 </ul>
-<!-- --><div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"zoo"</span>, <span class="st">"latticeExtra"</span>, <span class="st">"polynom"</span>, <span class="st">"car"</span>, <span class="st">"Hmisc"</span>,<span class="st">"reshape"</span>))</span></code></pre></div>
+<!-- --><div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">"zoo"</span>, <span class="st">"latticeExtra"</span>, <span class="st">"polynom"</span>, <span class="st">"car"</span>, <span class="st">"Hmisc"</span>,<span class="st">"reshape"</span>))</span></code></pre></div>
 <ul>
 <li>Install hydromad:</li>
 </ul>
-<!-- --><div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"hydromad"</span>, <span class="at">repos=</span><span class="st">"http://hydromad.catchment.org"</span>)</span></code></pre></div>
+<!-- --><div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">"hydromad"</span>, <span class="dt">repos=</span><span class="st">"http://hydromad.catchment.org"</span>)</span></code></pre></div>
 <ul>
 <li>Optionally install other packages required for certain functions:</li>
 </ul>
-<!-- --><div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"DEoptim"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dream"</span>, <span class="at">repos=</span><span class="st">"http://hydromad.catchment.org"</span>)</span></code></pre></div>
+<!-- --><div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">install.packages</span>(<span class="st">"DEoptim"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">install.packages</span>(<span class="st">"dream"</span>, <span class="dt">repos=</span><span class="st">"http://hydromad.catchment.org"</span>)</span></code></pre></div>
 <p>Once it is installed, get started with</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package =</span> <span class="st">"hydromad"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">"hydromad"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">"hydromad"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">help</span>(<span class="st">"hydromad"</span>)</span></code></pre></div>
 <p>The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"JosephGuillaume/hydromad"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># install.packages("devtools")</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"JosephGuillaume/hydromad"</span>)</span></code></pre></div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
@@ -159,30 +159,30 @@ install.packages("hydromad")
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>This is a basic example of defining a model in hydromad:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hydromad)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## basic example code</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Cotter)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## IHACRES CWI model with exponential unit hydrograph</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## an unfitted model, with ranges of possible parameter values</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>modx <span class="ot">&lt;-</span> <span class="fu">hydromad</span>(Cotter[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>], <span class="at">sma =</span> <span class="st">"cwi"</span>, <span class="at">routing =</span> <span class="st">"expuh"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tau_s =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">100</span>), <span class="at">v_s =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>modx</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hydromad model with "cwi" SMA and "expuh" routing:</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Start = 1966-05-01, End = 1969-01-24</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; SMA Parameters:</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       lower upper     </span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tw        0   100     </span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; f         0     8     </span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; scale    NA    NA     </span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; l         0     0 (==)</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; p         1     1 (==)</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t_ref    20    20 (==)</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Routing Parameters:</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       lower upper  </span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tau_s     2   100  </span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; v_s       0     1</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">library</span>(hydromad)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">## basic example code</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">data</span>(Cotter)</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">## IHACRES CWI model with exponential unit hydrograph</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">## an unfitted model, with ranges of possible parameter values</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>modx &lt;-<span class="st"> </span><span class="kw">hydromad</span>(Cotter[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>], <span class="dt">sma =</span> <span class="st">"cwi"</span>, <span class="dt">routing =</span> <span class="st">"expuh"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>                 <span class="dt">tau_s =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">100</span>), <span class="dt">v_s =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb6-8"><a href="#cb6-8"></a>modx</span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; </span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; Hydromad model with "cwi" SMA and "expuh" routing:</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; Start = 1966-05-01, End = 1969-01-24</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; </span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; SMA Parameters:</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;       lower upper     </span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; tw        0   100     </span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; f         0     8     </span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; scale    NA    NA     </span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; l         0     0 (==)</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; p         1     1 (==)</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; t_ref    20    20 (==)</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; Routing Parameters:</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt;       lower upper  </span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; tau_s     2   100  </span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; v_s       0     1</span></span></code></pre></div>
 </div>
 <div id="license" class="section level2">
 <h2 class="hasAnchor">
