@@ -1,0 +1,17 @@
+Package: dream
+Version: 0.4-2
+Depends: coda
+Imports: stats, utils
+Suggests: snow, R.matlab, lattice, reshape, mgcv
+Enhances: multicore, foreach, doMPI, doMC, doSNOW
+MD5sum: e948f9fb05c85b54fa1fe871e0f431d3
+
+Package: hydromad
+Version: 0.9-27
+Depends: R (>= 2.10), zoo (>= 1.6-3), lattice (>= 0.19-11), latticeExtra (>= 0.6-14), polynom, reshape
+Imports: car (>= 2.0-2), Hmisc, stats, utils, Rcpp (>= 0.12.17)
+LinkingTo: Rcpp
+Suggests: DEoptim, mgcv, chron, testthat, mco, cmaes, ppso, sensitivity, ggplot2, rsm, parallel, foreach, ff,
+            dream, knitr, coda, iterators, patrick (>= 0.0.1), rmarkdown, bookdown
+License: GPL (>= 2)
+MD5sum: e335853c4c49332e1d6a2405d58259b4
