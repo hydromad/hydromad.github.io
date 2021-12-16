@@ -24,6 +24,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -36,18 +38,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">hydromad</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-27</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/hydromad.html">Get started</a>
 </li>
@@ -78,10 +74,11 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
-      <a href="http://github.com/josephguillaume/hydromad">hydromad 0.9-27</a>
+      <a href="http://github.com/josephguillaume/hydromad" class="external-link">hydromad 0.9-27</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="news/index.html">Changelog</a>
     </li>
   </ul>
@@ -89,7 +86,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/josephguillaume/hydromad/">
+  <a href="https://github.com/josephguillaume/hydromad/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -106,17 +103,17 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="hydromad" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#hydromad" class="anchor"></a>hydromad</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="hydromad">hydromad<a class="anchor" aria-label="anchor" href="#hydromad"></a>
+</h1></div>
 <!-- badges: start -->
 
 <p>The goal of hydromad is to provide a modelling framework for environmental hydrology: water balance accounting and flow routing in spatially aggregated catchments.</p>
 <p>Hydromad supports simulation, estimation, assessment and visualisation of flow response to time series of rainfall and other drivers. A minimal unit hydrograph framework is used, where areal rainfall is passed through a soil moisture accounting (SMA) model to estimate effective rainfall; this is then passed through a routing model to estimate streamflow. Included are several implementations of common hydrological models consistent with this framework.</p>
-<p>The main resource for hydromad is the website: <a href="http://hydromad.catchment.org" class="uri">http://hydromad.catchment.org</a> The website describes the different functions and gives examples of the code applications.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<p>The main resource for hydromad is the website: <a href="http://hydromad.catchment.org" class="external-link uri">http://hydromad.catchment.org</a> The website describes the different functions and gives examples of the code applications.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <!--- You can install the released version of hydromad from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -124,40 +121,40 @@ install.packages("hydromad")
 ```
 --->
 <ul>
-<li>Install required packages from within R:</li>
+<li>Add the <code>hydromad</code> repository for this R session:</li>
 </ul>
-<!-- --><div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">"zoo"</span>, <span class="st">"latticeExtra"</span>, <span class="st">"polynom"</span>, <span class="st">"car"</span>, <span class="st">"Hmisc"</span>,<span class="st">"reshape"</span>))</span></code></pre></div>
+<!-- --><div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">options</span>(<span class="dt">repos=</span><span class="kw">c</span>(<span class="st">"http://hydromad.catchment.org"</span>,<span class="kw">getOption</span>(<span class="st">"repos"</span>)))</span></code></pre></div>
 <ul>
 <li>Install hydromad:</li>
 </ul>
-<!-- --><div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">"hydromad"</span>, <span class="dt">repos=</span><span class="st">"http://hydromad.catchment.org"</span>)</span></code></pre></div>
+<!-- --><div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">"hydromad"</span>)</span></code></pre></div>
 <ul>
 <li>Optionally install other packages required for certain functions:</li>
 </ul>
 <!-- --><div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">install.packages</span>(<span class="st">"DEoptim"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">install.packages</span>(<span class="st">"dream"</span>, <span class="dt">repos=</span><span class="st">"http://hydromad.catchment.org"</span>)</span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">install.packages</span>(<span class="st">"dream"</span>)</span></code></pre></div>
 <p>Once it is installed, get started with</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(<span class="dt">package =</span> <span class="st">"hydromad"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw">help</span>(<span class="st">"hydromad"</span>)</span></code></pre></div>
-<p>The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
+<p>The development version can be installed from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"JosephGuillaume/hydromad"</span>)</span></code></pre></div>
 </div>
-<div id="contributing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contributing" class="anchor"></a>Contributing</h2>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
 <p>The maintainers of hydromad are always keen to receive contributions. However to help us we would like you to consider the following:</p>
 <ul>
-<li>Please read and use our <a href="https://github.com/josephguillaume/hydromad/blob/master/docs/CONTRIBUTING.md">CONTRIBUTING document</a>, this will really help us integrating your solution into hydromad.<br>
+<li>Please read and use our <a href="https://github.com/josephguillaume/hydromad/blob/master/docs/CONTRIBUTING.md" class="external-link">CONTRIBUTING document</a>, this will really help us integrating your solution into hydromad.<br>
 </li>
-<li>This is a list of the <a href="https://github.com/josephguillaume/hydromad/issues">current issues</a> (which you might be able to help with).<br>
+<li>This is a list of the <a href="https://github.com/josephguillaume/hydromad/issues" class="external-link">current issues</a> (which you might be able to help with).<br>
 </li>
-<li>As part of contributing we would like you to consider the ropensci <a href="https://ropensci.org/code-of-conduct/">Code of Conduct</a>, which we use for hydromad.</li>
+<li>As part of contributing we would like you to consider the ropensci <a href="https://ropensci.org/code-of-conduct/" class="external-link">Code of Conduct</a>, which we use for hydromad.</li>
 </ul>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>This is a basic example of defining a model in hydromad:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">library</span>(hydromad)</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">## basic example code</span></span>
@@ -184,14 +181,14 @@ install.packages("hydromad")
 <span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; tau_s     2   100  </span></span>
 <span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; v_s       0     1</span></span></code></pre></div>
 </div>
-<div id="license" class="section level2">
-<h2 class="hasAnchor">
-<a href="#license" class="anchor"></a>License</h2>
-<p>This project is licensed under the terms of <a href="https://github.com/josephguillaume/hydromad/blob/master/DESCRIPTION">GPL (&gt;=2)</a></p>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>This project is licensed under the terms of <a href="https://github.com/josephguillaume/hydromad/blob/master/DESCRIPTION" class="external-link">GPL (&gt;=2)</a></p>
 </div>
-<div id="acknowledgements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
+<div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
 <p>This research was supported by the Sydney Informatics Hub, a Core Research Facility of the University of Sydney.</p>
 </div>
 </div>
@@ -199,44 +196,55 @@ install.packages("hydromad")
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/josephguillaume/hydromad/">https://​github.com/​josephguillaume/​hydromad/​</a>
-</li>
-<li>Report a bug at at <br><a href="http://github.com/josephguillaume/hydromad/issues">http://​github.com/​josephguillaume/​hydromad/​issues'</a>
-</li>
+<li><a href="https://github.com/josephguillaume/hydromad/" class="external-link">Browse source code</a></li>
+<li><a href="http://github.com/josephguillaume/hydromad/issues" class="external-link">Report a bug at</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 2)</li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing hydromad</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Joseph Guillaume <br><small class="roles"> Maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/josephguillaume/hydromad/actions"><img src="https://github.com/josephguillaume/hydromad/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/josephguillaume/hydromad"><img src="https://codecov.io/gh/josephguillaume/hydromad/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/josephguillaume/hydromad/actions" class="external-link"><img src="https://github.com/josephguillaume/hydromad/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/josephguillaume/hydromad" class="external-link"><img src="https://codecov.io/gh/josephguillaume/hydromad/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Joseph Guillaume.</p>
+  <p></p>
+<p>Developed by Joseph Guillaume.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -244,6 +252,8 @@ install.packages("hydromad")
 
   
 
+
+  
 
   </body>
 </html>

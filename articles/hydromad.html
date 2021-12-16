@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hydromad</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-27</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/hydromad.html">Get started</a>
 </li>
@@ -73,10 +69,11 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
-      <a href="http://github.com/josephguillaume/hydromad">hydromad 0.9-27</a>
+      <a href="http://github.com/josephguillaume/hydromad" class="external-link">hydromad 0.9-27</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="../news/index.html">Changelog</a>
     </li>
   </ul>
@@ -84,7 +81,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/josephguillaume/hydromad/">
+  <a href="https://github.com/josephguillaume/hydromad/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -105,30 +102,30 @@
       <h1 data-toc-skip>hydromad</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/josephguillaume/hydromad/blob/master/vignettes/hydromad.Rmd"><code>vignettes/hydromad.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/josephguillaume/hydromad/blob/HEAD/vignettes/hydromad.Rmd" class="external-link"><code>vignettes/hydromad.Rmd</code></a></small>
       <div class="hidden name"><code>hydromad.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction-to-hydromad" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction-to-hydromad" class="anchor"></a>Introduction to hydromad</h1>
-<p><code>hydromad</code> is an R package (i.e. a software package for the <a href="http://www.r-project.org/">R statistical computing environment</a>). It provides a modelling framework for environmental hydrology: water balance accounting and flow routing in spatially aggregated catchments. It supports simulation, estimation, assessment and visualisation of flow response to time series of rainfall and other drivers.</p>
+<div class="section level1">
+<h1 id="introduction-to-hydromad">Introduction to hydromad<a class="anchor" aria-label="anchor" href="#introduction-to-hydromad"></a>
+</h1>
+<p><code>hydromad</code> is an R package (i.e. a software package for the <a href="http://www.r-project.org/" class="external-link">R statistical computing environment</a>). It provides a modelling framework for environmental hydrology: water balance accounting and flow routing in spatially aggregated catchments. It supports simulation, estimation, assessment and visualisation of flow response to time series of rainfall and other drivers.</p>
 <p>A minimal unit hydrograph framework is used, where areal rainfall is passed through a soil moisture accounting (SMA) model to estimate effective rainfall; this is then passed through a routing model to estimate streamflow. Included are several implementations of models consistent with this framework, notably the IHACRES CWI and CMD soil moisture accounting models, and unit hydrograph transfer functions for the routing.</p>
 <p><img src="hydromad_files/figure-html/model-framework-1.png" width="576" style="display: block; margin: auto;"></p>
-<p>This site serves as a reference for the R functions and datasets in the package. A gentler introduction can be found in the vignette <a href="http://hydromad.catchment.org/downloads/tutorial.pdf"><em>hydromad tutorial</em></a> and the paper <a href="http://hydromad.catchment.org/downloads/hydromad_paper.pdf"><em>An open software environment for hydrological model assessment and development</em></a> (both included in the package). You can also look at the <a href="http://www.nfrac.org/felix/papers/"><em>source code for the paper</em></a>.</p>
+<p>This site serves as a reference for the R functions and datasets in the package. A gentler introduction can be found in the vignette <a href="http://hydromad.catchment.org/downloads/tutorial.pdf" class="external-link"><em>hydromad tutorial</em></a> and the paper <a href="http://hydromad.catchment.org/downloads/hydromad_paper.pdf" class="external-link"><em>An open software environment for hydrological model assessment and development</em></a> (both included in the package). You can also look at the <a href="http://www.nfrac.org/felix/papers/" class="external-link"><em>source code for the paper</em></a>.</p>
 <p>The package is maintained by <a href="joseph.guillaume@anu.edu.au">Joseph Guillaume</a>. The modelling approach is based on work by Tony Jakeman and Barry Croke at The Australian National University.</p>
 <p>For more information, see</p>
 <ul>
 <li><a href="#installation">Installation instructions</a></li>
 <li>
-<a href="http://groups.google.com/group/hydromad-users">hydromad users group</a> (questions and discussion).</li>
+<a href="http://groups.google.com/group/hydromad-users" class="external-link">hydromad users group</a> (questions and discussion).</li>
 <li>
-<a href="http://github.com/josephguillaume/hydromad">hydromad github repository</a> (source code and bugs)
+<a href="http://github.com/josephguillaume/hydromad" class="external-link">hydromad github repository</a> (source code and bugs)
 <ul>
-<li><a href="http://github.com/josephguillaume/hydromad/raw/master/NEWS">latest NEWS</a></li>
+<li><a href="http://github.com/josephguillaume/hydromad/raw/master/NEWS" class="external-link">latest NEWS</a></li>
 </ul>
 </li>
 </ul>
@@ -146,11 +143,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Joseph Guillaume.</p>
+  <p></p>
+<p>Developed by Joseph Guillaume.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -158,6 +157,8 @@
 
   
 
+
+  
 
   </body>
 </html>

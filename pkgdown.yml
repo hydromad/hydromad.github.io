@@ -1,9 +1,9 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   hbv: hbv.html
   hydromad: hydromad.html
   tutorial: tutorial.html
-last_built: 2021-03-22T18:59Z
+last_built: 2021-12-16T17:13Z
 

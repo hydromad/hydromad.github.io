@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hydromad</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-27</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/hydromad.html">Get started</a>
 </li>
@@ -73,10 +69,11 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
-      <a href="http://github.com/josephguillaume/hydromad">hydromad 0.9-27</a>
+      <a href="http://github.com/josephguillaume/hydromad" class="external-link">hydromad 0.9-27</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="../news/index.html">Changelog</a>
     </li>
   </ul>
@@ -84,7 +81,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/josephguillaume/hydromad/">
+  <a href="https://github.com/josephguillaume/hydromad/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -105,16 +102,16 @@
       <h1 data-toc-skip>Tutorial</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/josephguillaume/hydromad/blob/master/vignettes/tutorial.Rmd"><code>vignettes/tutorial.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/josephguillaume/hydromad/blob/HEAD/vignettes/tutorial.Rmd" class="external-link"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>tutorial.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
 <p>The <strong>hydromad</strong> package is designed for hydrological modelling and associated data analysis. It is focussed on a <em>top-down</em>, spatially lumped, empirical approach to environmental hydrology. In practice the emphasis is on models of rainfall runoff in catchments (watersheds). Such models predict streamflow from time series of areal rainfall and temperature or potential evapo-transpiration. They can be calibrated to time series of observed data.</p>
 <p>As <em>spatially lumped</em> models, they do not explicitly represent spatial variation over the catchment area. In particular, the standard formulations do not attempt to model effects of changes in land cover. These models are usually calibrated to a period of observed streamflow, and the parameters defining the modelled relationship between rainfall, evaporation and flow are assumed to be <em>stationary</em> in this period.</p>
 <p>The modelling framework in the <strong>hydromad</strong> package is based on a two-component structure: (1) a <em>soil moisture accounting</em> (SMA) module; and (2) a <em>routing</em> or <em>unit hydrograph</em> module (Figure @ref(fig:model-framework)). The SMA model converts rainfall and temperature into <em>effective rainfall</em> — the amount of rainfall which eventually reaches the catchment outlet as streamflow (i.e. that which is not lost as evaporation etc). The routing module converts effective rainfall into streamflow, which amounts to defining the peak response and shape of the recession curve. It is usually a linear transfer function, which can be as simple as a single exponential recession (i.e. constant decay rate), although variants with non-linearities are also available.</p>
@@ -131,34 +128,34 @@ The modelling framework in the <strong>hydromad</strong> package.
 <li>integration with other types of data analysis and model analysis in <code>R</code>, including sensitivity and uncertainty analyis.</li>
 </ul>
 <p>This tutorial describes how to get started with the <strong>hydromad</strong> <code>R</code> package. It covers the basics of reading data in from files, converting it into the appropriate format, and fitting and analysing a simple model.</p>
-<p>Once you have <code>R</code> running (See <a href="http://hydromad.catchment.org/">http://www.r-project.org/</a>) and have installed the <strong>hydromad</strong> package (See <a href="http://hydromad.catchment.org/">http://hydromad.catchment.org/</a>), you can load it:</p>
+<p>Once you have <code>R</code> running (See <a href="http://hydromad.catchment.org/" class="external-link">http://www.r-project.org/</a>) and have installed the <strong>hydromad</strong> package (See <a href="http://hydromad.catchment.org/" class="external-link">http://hydromad.catchment.org/</a>), you can load it:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://hydromad.catchment.org/">hydromad</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://hydromad.catchment.org/" class="external-link">hydromad</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="input-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#input-data" class="anchor"></a>Input data</h1>
+<div class="section level1">
+<h1 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a>
+</h1>
 <p>The example we will look at is the Cotter River catchment at Gingera (gauge 410730) in the Australian Capital Territory, Australia. This is a 148 km<span class="math inline">\(^2\)</span> catchment managed for urban water supply. Areal rainfall was estimated from several rain gauges operated by the Bureau of Meteorology and EcoWise. The temperature records come from Canberra Airport.</p>
 <p>The Cotter data is built in to the <strong>hydromad</strong> package, and can be loaded into the workspace with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
 <p>See Appendix @ref(reading-in-data) for a demonstration of reading in the time series data from files.</p>
 </div>
-<div id="data-checking" class="section level1">
-<h1 class="hasAnchor">
-<a href="#data-checking" class="anchor"></a>Data checking</h1>
+<div class="section level1">
+<h1 id="data-checking">Data checking<a class="anchor" aria-label="anchor" href="#data-checking"></a>
+</h1>
 <p>In a real data analysis problem, data checking is a central issue. However, as this document aims to introduce the core modelling functions, only a simple check will be demonstrated here. The most obvious thing to do is to plot the time series, as shown in Figure @ref(fig:dataplot).</p>
 <p><em>To plot the raw (daily) time series:</em></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">xyplot</span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
 <p><em>To plot a section of the time series:</em></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">xyplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1974-01-01"</span>, end <span class="op">=</span> <span class="st">"1975-01-01"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1974-01-01"</span>, end <span class="op">=</span> <span class="st">"1975-01-01"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><em>And to plot the timeseries aggregated to a monthly timestep:</em></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">monthlyPQE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Cotter</span>, <span class="va">as.yearmon</span>, <span class="va">mean</span><span class="op">)</span>
-<span class="fu">xyplot</span><span class="op">(</span><span class="va">monthlyPQE</span>,
-       screens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Streamflow (mm/day)"</span>, <span class="st">"Areal rain (mm/day)"</span>, <span class="st">"Temperature (deg. C)"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">monthlyPQE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">Cotter</span>, <span class="va">as.yearmon</span>, <span class="va">mean</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="va">monthlyPQE</span>,
+       screens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Streamflow (mm/day)"</span>, <span class="st">"Areal rain (mm/day)"</span>, <span class="st">"Temperature (deg. C)"</span><span class="op">)</span>,
        xlab <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="tutorial_files/figure-html/dataplot-1.png" alt="Input data, averaged over months" width="576"><p class="caption">
@@ -167,60 +164,60 @@ Input data, averaged over months
 </div>
 <p>Table @ref(tab:datasummary) shows the mean and quartiles of each input data series. One measure that is of key interest in hydrology is the <em>runoff ratio</em>, the proportion of the rainfall which flows out of the catchment. In a simple case this is just <code>sum(Q) / sum(P)</code>, but as we have missing values, we should only compare the common observations:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ok</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">Cotter</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Q</span><span class="op">[</span><span class="va">ok</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">P</span><span class="op">[</span><span class="va">ok</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.279101</code></pre>
+<code class="sourceCode R"><span class="va">ok</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html" class="external-link">complete.cases</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Cotter</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Q</span><span class="op">[</span><span class="va">ok</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">P</span><span class="op">[</span><span class="va">ok</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 0.279101</span></code></pre>
 <p>This figure is within the range we would expect, so is looks like we probably have the right data series and units.</p>
 <p>To estimate the delay time between rainfall and a consequent streamflow response, we can look at the cross-correlation function. The <strong>hydromad</strong> function <code>estimateDelay</code> picks out the lag time corresponding to the maximum correlation between rainfall and <em>rises in</em> streamflow. In the Cotter this is 0 days. For more detail there is a function <code>rollccf</code> which calculates the cross-correlation in a moving window through the data, shown in Figure @ref(fig:rollccf-plot). When the cross-correlation value drops down towards zero, there is little connection between rainfall and streamflow, and you should start to worry about the data. If the lag 1 value jumps above the lag 0 value, this indicates that the delay time has changed.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rollccf.html">rollccf</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span>
-<span class="fu">xyplot</span><span class="op">(</span><span class="va">x</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/extendrange.html">extendrange</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1980-01-01"</span>,<span class="st">"1990-01-01"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="va">x</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/extendrange.html" class="external-link">extendrange</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1980-01-01"</span>,<span class="st">"1990-01-01"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="tutorial_files/figure-html/rollccf-plot-1.png" alt="Cross-correlation between rainfall and streamflow rises, in two rolling windows of width 90 days and 365 days." width="700"><p class="caption">
 Cross-correlation between rainfall and streamflow rises, in two rolling windows of width 90 days and 365 days.
 </p>
 </div>
 </div>
-<div id="model-specification" class="section level1">
-<h1 class="hasAnchor">
-<a href="#model-specification" class="anchor"></a>Model Specification</h1>
+<div class="section level1">
+<h1 id="model-specification">Model Specification<a class="anchor" aria-label="anchor" href="#model-specification"></a>
+</h1>
 <p>A <strong>hydromad</strong> object encapsulates the chosen model form, parameter values (or ranges of values), as well as results. The model form is divided into two components: SMA (Soil Moisture Accounting) and routing. Additionally, a specification can be given for fitting the routing component (<code>rfit</code>). If given, this is applied automatically to fit the routing component after the SMA parameters have been specified.</p>
 <p>Let us define some data periods. We will fit a model to one, the calibration period, and then simulate it on the other periods to cross-check model performance.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ts70s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/window.html">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1970-01-01"</span>, end <span class="op">=</span> <span class="st">"1979-12-31"</span><span class="op">)</span>
-<span class="va">ts80s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/window.html">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1980-01-01"</span>, end <span class="op">=</span> <span class="st">"1989-12-31"</span><span class="op">)</span>
-<span class="va">ts90s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/window.html">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1990-01-01"</span>, end <span class="op">=</span> <span class="st">"1999-12-31"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">ts70s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1970-01-01"</span>, end <span class="op">=</span> <span class="st">"1979-12-31"</span><span class="op">)</span>
+<span class="va">ts80s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1980-01-01"</span>, end <span class="op">=</span> <span class="st">"1989-12-31"</span><span class="op">)</span>
+<span class="va">ts90s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">Cotter</span>, start <span class="op">=</span> <span class="st">"1990-01-01"</span>, end <span class="op">=</span> <span class="st">"1999-12-31"</span><span class="op">)</span></code></pre></div>
 <p>When we first set up the model, most of the parameters are not uniquely specified, but rather have a range of possible values. These defaults are taken from <code><a href="../reference/hydromad.options.html">hydromad.options()</a></code>, and they can be over-ridden by arguments to the <strong>hydromad</strong> function.</p>
 <p>A nice simple starting point is the classic IHACRES model of Jakeman and Hornberger (1993), which is a Soil Moisture Accounting model referred to here as <code>"cwi"</code> (Catchment Wetness Index).</p>
 <p>The routing component typically used in IHACRES is a Unit Hydrograph composed of exponential components, a structure referred to here as <code>"expuh"</code>. Up to three time constants can be specified, referred to as <code>tau_s</code> (slow component <span class="math inline">\(\tau_s\)</span>), <code>tau_q</code> (quick component <span class="math inline">\(\tau_q\)</span>) and <code>tau_3</code>. The partitioning of flow between the stores is set by <code>v_s</code> (fractional volume in the slow component <span class="math inline">\(v_s\)</span>), and by default the quick flow component is assigned the remainder.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>When a model structure is specified, default parameter ranges for the given SMA model are applied, and others can be specified:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cotterMod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span><span class="va">ts90s</span>, sma <span class="op">=</span> <span class="st">"cwi"</span>, routing <span class="op">=</span> <span class="st">"expuh"</span>,
-                      tau_s <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">100</span><span class="op">)</span>, tau_q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>, v_s <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cotterMod</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Hydromad model with "cwi" SMA and "expuh" routing:
-## Start = 1990-01-01, End = 1999-12-31
-## 
-## SMA Parameters:
-##       lower upper     
-## tw        0   100     
-## f         0     8     
-## scale    NA    NA     
-## l         0     0 (==)
-## p         1     1 (==)
-## t_ref    20    20 (==)
-## Routing Parameters:
-##       lower upper  
-## tau_s     5   100  
-## tau_q     0     5  
-## v_s       0     1</code></pre>
+                      tau_s <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">100</span><span class="op">)</span>, tau_q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>, v_s <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">cotterMod</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## Hydromad model with "cwi" SMA and "expuh" routing:</span>
+<span class="co">## Start = 1990-01-01, End = 1999-12-31</span>
+<span class="co">## </span>
+<span class="co">## SMA Parameters:</span>
+<span class="co">##       lower upper     </span>
+<span class="co">## tw        0   100     </span>
+<span class="co">## f         0     8     </span>
+<span class="co">## scale    NA    NA     </span>
+<span class="co">## l         0     0 (==)</span>
+<span class="co">## p         1     1 (==)</span>
+<span class="co">## t_ref    20    20 (==)</span>
+<span class="co">## Routing Parameters:</span>
+<span class="co">##       lower upper  </span>
+<span class="co">## tau_s     5   100  </span>
+<span class="co">## tau_q     0     5  </span>
+<span class="co">## v_s       0     1</span></code></pre>
 <p>With this model specification, we can choose to calibrate the model in various ways, or to simulate from the specified parameter space, or to run sensitivity or uncertainty analysis.</p>
-<div id="calibration" class="section level2">
-<h2 class="hasAnchor">
-<a href="#calibration" class="anchor"></a>Calibration</h2>
+<div class="section level2">
+<h2 id="calibration">Calibration<a class="anchor" aria-label="anchor" href="#calibration"></a>
+</h2>
 <p>Currently implemented calibration methods include simple sampling schemes (<code>fitBySampling</code>), general optimisation methods with multistart or presampling (<code>fitByOptim</code>) and the more sophisticated Shuffled Complex Evolution (<code>fitBySCE</code>) and Differential Evolution (<code>fitByDE</code>) methods. All attempt to maximise a given objective function.</p>
-<p>The objective function can be specified as the <code>objective</code> argument to these functions, or by setting <code><a href="../reference/hydromad.options.html">hydromad.options(objective = )</a></code>. It is given as an R function which may refer to the values <code>Q</code> and <code>X</code>, representing observed and modelled flow, respectively. For more advanced use it may also refer to <code>U</code> (modelled effective rainfall), or the full input <code>DATA</code> matrix.</p>
+<p>The objective function can be specified as the <code>objective</code> argument to these functions, or by setting <code>hydromad.options(objective = )</code>. It is given as an R function which may refer to the values <code>Q</code> and <code>X</code>, representing observed and modelled flow, respectively. For more advanced use it may also refer to <code>U</code> (modelled effective rainfall), or the full input <code>DATA</code> matrix.</p>
 <p>The <code>nseStat</code> function implements a generalisation of the familiar <span class="math inline">\(R^2\)</span> coefficient of efficiency (Nash and Sutcliffe, 1970):</p>
 <p><span class="math display">\[
   \mathrm{nseStat}(Q,X) = \frac{ \sum |Q_* - X_*|^2 }{ \sum |Q_* - Z_*|^2 }
@@ -228,34 +225,34 @@ Cross-correlation between rainfall and streamflow rises, in two rolling windows 
 <p>Here we use the default, which is a weighted sum of the <span class="math inline">\(R^2\)</span> of square-root transformed data, and (with less weight) the <span class="math inline">\(R^2\)</span> of monthly-aggregated data.</p>
 <p>For this simple example, the model will be calibrated using the <code>fitByOptim</code> function, which performs parameter sampling over the pre-specified ranges, selecting the best of these, and then runs an optimisation algorithm from that starting point.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cotterMod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">cotterMod</span>, routing <span class="op">=</span> <span class="st">"armax"</span>, rfit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"sriv"</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">2</span>, m<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">cotterMod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">cotterMod</span>, routing <span class="op">=</span> <span class="st">"armax"</span>, rfit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"sriv"</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">2</span>, m<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">cotterFit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitByOptim.html">fitByOptim</a></span><span class="op">(</span><span class="va">cotterMod</span>, samples <span class="op">=</span> <span class="fl">100</span>, method <span class="op">=</span> <span class="st">"PORT"</span><span class="op">)</span></code></pre></div>
 <p>See the help pages <code><a href="../reference/hydromad.html">help("hydromad")</a></code> and <code><a href="../reference/fitByOptim.html">help("fitByOptim")</a></code> for details of some of the options available.</p>
 </div>
 </div>
-<div id="model-output" class="section level1">
-<h1 class="hasAnchor">
-<a href="#model-output" class="anchor"></a>Model Output</h1>
+<div class="section level1">
+<h1 id="model-output">Model Output<a class="anchor" aria-label="anchor" href="#model-output"></a>
+</h1>
 <p>Now that we have an object representing a calibrated model, what can we do with it? There are many standard <code>R</code> functions which have methods for `hydromad} objects, which allow one to:</p>
 <ul>
 <li>
-<strong>view model info</strong> using <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, and <code><a href="../reference/objFunVal.html">objFunVal()</a></code>
+<strong>view model info</strong> using <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, and <code><a href="../reference/objFunVal.html">objFunVal()</a></code>
 </li>
 <li>
-<strong>extract parameter values</strong> using <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code>.</li>
+<strong>extract parameter values</strong> using <code><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef()</a></code>.</li>
 <li>
-<strong>access data</strong> with <code><a href="https://rdrr.io/r/stats/fitted.values.html">fitted()</a></code>, <code><a href="https://rdrr.io/r/stats/residuals.html">residuals()</a></code>, and <code><a href="../reference/utilities.html">observed()</a></code>. (These exclude the warm-up period by default.)</li>
+<strong>access data</strong> with <code><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted()</a></code>, <code><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals()</a></code>, and <code><a href="../reference/utilities.html">observed()</a></code>. (These exclude the warm-up period by default.)</li>
 <li>
-<strong>run with new data</strong> using <code><a href="https://rdrr.io/r/stats/update.html">update()</a></code> or <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>.</li>
+<strong>run with new data</strong> using <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">update()</a></code> or <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code>.</li>
 <li>
-<strong>simulate from parameter ranges</strong> using <code><a href="https://rdrr.io/r/stats/simulate.html">simulate()</a></code>.</li>
+<strong>simulate from parameter ranges</strong> using <code><a href="https://rdrr.io/r/stats/simulate.html" class="external-link">simulate()</a></code>.</li>
 <li>
-<strong>generate plots</strong> using <code>xyplot()</code>, <code>qqmath()</code>, etc.</li>
+<strong>generate plots</strong> using <code><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot()</a></code>, <code><a href="https://rdrr.io/pkg/lattice/man/qqmath.html" class="external-link">qqmath()</a></code>, etc.</li>
 </ul>
-<p>For details, see the examples below, the user manual, and the help page of each function.\footnote{Note that to get help for generic functions it is necessary to specify the method for <strong>hydromad</strong> objects: e.g. <code><a href="../reference/predict.hydromad.html">?predict.hydromad</a></code> or <code><a href="../reference/xyplot.hydromad.html">?xyplot.hydromad</a></code>. The help pages are also available from the web site <a href="http://hydromad.catchment.org/" class="uri">http://hydromad.catchment.org/</a>.</p>
-<p>Most basically, one can extract the modelled streamflow time series with the function <code><a href="https://rdrr.io/r/stats/fitted.values.html">fitted()</a></code>, and this can of course be used with any of <code>R</code>’s library of analysis functions. A quick way to view the modelled and observed streamflow time series together is to call <code>xyplot()</code> on the model object, as in Figure @ref(fig:obs-mod-plot). Examples below also show the output from calling the functions <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> on the model object.</p>
+<p>For details, see the examples below, the user manual, and the help page of each function.\footnote{Note that to get help for generic functions it is necessary to specify the method for <strong>hydromad</strong> objects: e.g. <code><a href="../reference/predict.hydromad.html">?predict.hydromad</a></code> or <code><a href="../reference/xyplot.hydromad.html">?xyplot.hydromad</a></code>. The help pages are also available from the web site <a href="http://hydromad.catchment.org/" class="external-link uri">http://hydromad.catchment.org/</a>.</p>
+<p>Most basically, one can extract the modelled streamflow time series with the function <code><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted()</a></code>, and this can of course be used with any of <code>R</code>’s library of analysis functions. A quick way to view the modelled and observed streamflow time series together is to call <code><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot()</a></code> on the model object, as in Figure @ref(fig:obs-mod-plot). Examples below also show the output from calling the functions <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the model object.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">xyplot</span><span class="op">(</span><span class="va">cotterFit</span>, with.P <span class="op">=</span> <span class="cn">TRUE</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1994-01-01"</span>, <span class="st">"1997-01-01"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="va">cotterFit</span>, with.P <span class="op">=</span> <span class="cn">TRUE</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1994-01-01"</span>, <span class="st">"1997-01-01"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="tutorial_files/figure-html/obs-mod-plot-1.png" alt="Observed vs modelled streamflow in part of the calibration period." width="700"><p class="caption">
 Observed vs modelled streamflow in part of the calibration period.
@@ -263,71 +260,71 @@ Observed vs modelled streamflow in part of the calibration period.
 </div>
 <p><em>To display information and parameters of a model:</em></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cotterFit</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Hydromad model with "cwi" SMA and "armax" routing:
-## Start = 1990-01-01, End = 1999-12-31
-## 
-## SMA Parameters:
-##        tw          f      scale          l          p      t_ref  
-## 29.376527   1.910419   0.001693   0.000000   1.000000  20.000000  
-## Routing Parameters:
-##     a_1      a_2      b_0      b_1    delay  
-##  1.5236  -0.5388   0.1567  -0.1415   0.0000  
-## TF Structure: S + Q (two stores in parallel)
-##     Poles:0.558, 0.9656 
-## 
-## Fit: ($fit.result)
-## fitByOptim(MODEL = cotterMod, method = "PORT", samples = 100)
-##      195 function evaluations in 27.14 seconds 
-## 
-## Routing fit info:  list(TRUE, 6)</code></pre>
-<p>Note one can get hold of the parameter values using <code><a href="https://rdrr.io/r/stats/coef.html">coef(cotterFit)</a></code> or <code><a href="https://rdrr.io/r/stats/coef.html">coef(cotterFit, which = "routing")</a></code> (for the unit hydrograph only).</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">cotterFit</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## Hydromad model with "cwi" SMA and "armax" routing:</span>
+<span class="co">## Start = 1990-01-01, End = 1999-12-31</span>
+<span class="co">## </span>
+<span class="co">## SMA Parameters:</span>
+<span class="co">##        tw          f      scale          l          p      t_ref  </span>
+<span class="co">## 29.376527   1.910419   0.001693   0.000000   1.000000  20.000000  </span>
+<span class="co">## Routing Parameters:</span>
+<span class="co">##     a_1      a_2      b_0      b_1    delay  </span>
+<span class="co">##  1.5236  -0.5388   0.1567  -0.1415   0.0000  </span>
+<span class="co">## TF Structure: S + Q (two stores in parallel)</span>
+<span class="co">##     Poles:0.558, 0.9656 </span>
+<span class="co">## </span>
+<span class="co">## Fit: ($fit.result)</span>
+<span class="co">## fitByOptim(MODEL = cotterMod, method = "PORT", samples = 100)</span>
+<span class="co">##      195 function evaluations in 25.54 seconds </span>
+<span class="co">## </span>
+<span class="co">## Routing fit info:  list(TRUE, 6)</span></code></pre>
+<p>Note one can get hold of the parameter values using <code>coef(cotterFit)</code> or <code>coef(cotterFit, which = "routing")</code> (for the unit hydrograph only).</p>
 <p><em>To display basic performance statistics for a model:</em></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cotterFit</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## hydromad(DATA = ts90s, tau_s = c(5, 100), tau_q = c(0, 5), v_s = c(0, 
-##     1), sma = "cwi", routing = "armax", rfit = list("sriv", order = c(n = 2, 
-##     m = 1)), tw = 29.3765, f = 1.91042, scale = 0.00169348)
-## 
-## Time steps: 3552 (33 missing).
-## Runoff ratio (Q/P): (0.8179 / 3.208) = 0.2549
-## rel bias: -0.03333
-## r squared: 0.7733
-## r sq sqrt: 0.8356
-## r sq log: 0.8511
-## 
-## For definitions see ?hydromad.stats</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cotterFit</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## hydromad(DATA = ts90s, tau_s = c(5, 100), tau_q = c(0, 5), v_s = c(0, </span>
+<span class="co">##     1), sma = "cwi", routing = "armax", rfit = list("sriv", order = c(n = 2, </span>
+<span class="co">##     m = 1)), tw = 29.3765, f = 1.91042, scale = 0.00169348)</span>
+<span class="co">## </span>
+<span class="co">## Time steps: 3552 (33 missing).</span>
+<span class="co">## Runoff ratio (Q/P): (0.8179 / 3.208) = 0.2549</span>
+<span class="co">## rel bias: -0.03333</span>
+<span class="co">## r squared: 0.7733</span>
+<span class="co">## r sq sqrt: 0.8356</span>
+<span class="co">## r sq log: 0.8511</span>
+<span class="co">## </span>
+<span class="co">## For definitions see ?hydromad.stats</span></code></pre>
 <p>Calculating basic performance statistics for a model. The <code>summary</code> function actually returns a list, containing the values of various performance statistics.</p>
 </div>
-<div id="model-simulation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#model-simulation" class="anchor"></a>Model Simulation</h1>
+<div class="section level1">
+<h1 id="model-simulation">Model Simulation<a class="anchor" aria-label="anchor" href="#model-simulation"></a>
+</h1>
 <p>We can simulate this model on the other periods using the `<code>update</code> function:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sim70s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">ts70s</span><span class="op">)</span>
-<span class="va">sim80s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">ts80s</span><span class="op">)</span>
-<span class="va">simAll</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">Cotter</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">sim70s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">ts70s</span><span class="op">)</span>
+<span class="va">sim80s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">ts80s</span><span class="op">)</span>
+<span class="va">simAll</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">Cotter</span><span class="op">)</span></code></pre></div>
 <p>For <em>verification</em> purposes, we would like to calculate performance statistics for the whole dataset but excluding the calibration period. The easiest way to do this is to set the observed streamflow data in the calibration period to `NA} (missing), and then run the simulation:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tsVerif</span> <span class="op">&lt;-</span> <span class="va">Cotter</span>
-<span class="va">tsVerif</span><span class="op">$</span><span class="va">Q</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">ts90s</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-<span class="va">simVerif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">tsVerif</span><span class="op">)</span></code></pre></div>
+<span class="va">tsVerif</span><span class="op">$</span><span class="va">Q</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">ts90s</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
+<span class="va">simVerif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">cotterFit</span>, newdata <span class="op">=</span> <span class="va">tsVerif</span><span class="op">)</span></code></pre></div>
 <p>It is convenient to group these models together into a `runlist}, which is just a list of fitted models:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">allMods</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runlist.html">runlist</a></span><span class="op">(</span>calibration <span class="op">=</span> <span class="va">cotterFit</span>, <span class="va">sim70s</span>, <span class="va">sim80s</span>, <span class="va">simVerif</span><span class="op">)</span></code></pre></div>
 <p>The predicted time series (hydrograph) and cumulative distribution (flow duration curve) can be generated as in Figures @ref(fig:obs-mod-plots) and @ref(fig:fdc-plot).</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">xyplot</span><span class="op">(</span><span class="va">allMods</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, scales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="va">allMods</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, scales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="tutorial_files/figure-html/obs-mod-plots-1.png" alt="Observed vs modelled streamflow in validation periods." width="700"><p class="caption">
 Observed vs modelled streamflow in validation periods.
 </p>
 </div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">allMods</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">allMods</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Performance statistics for a set of models.</caption>
 <thead><tr class="header">
@@ -369,8 +366,8 @@ Observed vs modelled streamflow in validation periods.
 </tbody>
 </table>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">simAll</span>, breaks <span class="op">=</span> <span class="st">"5 years"</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">simAll</span>, breaks <span class="op">=</span> <span class="st">"5 years"</span><span class="op">)</span></code></pre></div>
+<table style="width:100%;" class="table">
 <caption>Viewing a break-down the performance of a model over 5-year blocks.</caption>
 <colgroup>
 <col width="11%">
@@ -509,16 +506,16 @@ Observed vs modelled streamflow in validation periods.
 </table>
 <p><em>To plot performance statistics over time:</em></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">twoYrStats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">simAll</span>, breaks <span class="op">=</span> <span class="st">"2 years"</span><span class="op">)</span>
-<span class="va">statSeries</span> <span class="op">&lt;-</span> <span class="va">twoYrStats</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"r.squared"</span>, <span class="st">"r.sq.sqrt"</span>, <span class="st">"rel.bias"</span>, <span class="st">"runoff"</span><span class="op">)</span><span class="op">]</span>
+<code class="sourceCode R"><span class="va">twoYrStats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">simAll</span>, breaks <span class="op">=</span> <span class="st">"2 years"</span><span class="op">)</span>
+<span class="va">statSeries</span> <span class="op">&lt;-</span> <span class="va">twoYrStats</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"r.squared"</span>, <span class="st">"r.sq.sqrt"</span>, <span class="st">"rel.bias"</span>, <span class="st">"runoff"</span><span class="op">)</span><span class="op">]</span>
 <span class="co">## cut off crazy R Squared values below 0 (for plotting)</span>
-<span class="va">statSeries</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op">(</span><span class="va">statSeries</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="va">statSeries</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op">(</span><span class="va">statSeries</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">xyplot</span><span class="op">(</span><span class="va">statSeries</span>, type <span class="op">=</span> <span class="st">"s"</span>, lwd <span class="op">=</span> <span class="fl">2</span>,
+<span class="va">statSeries</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="va">statSeries</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">0</span><span class="op">)</span>
+<span class="va">statSeries</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="va">statSeries</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fl">0</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="va">statSeries</span>, type <span class="op">=</span> <span class="st">"s"</span>, lwd <span class="op">=</span> <span class="fl">2</span>,
          ylab <span class="op">=</span> <span class="st">"statistic"</span>, xlab <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>,
-  `observed streamflow` <span class="op">=</span> <span class="fu">xyplot</span><span class="op">(</span><span class="fu"><a href="../reference/utilities.html">observed</a></span><span class="op">(</span><span class="va">simAll</span><span class="op">)</span><span class="op">)</span>,
-  layout <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span>, x.same <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">latticeExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/latticeExtra/man/layer.html">layer</a></span><span class="op">(</span><span class="fu">panel.refline</span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0</span>, v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">statSeries</span><span class="op">)</span><span class="op">)</span>, under<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+  `observed streamflow` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="fu"><a href="../reference/utilities.html">observed</a></span><span class="op">(</span><span class="va">simAll</span><span class="op">)</span><span class="op">)</span>,
+  layout <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span>, x.same <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">latticeExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/latticeExtra/man/layer.html" class="external-link">layer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/panel.functions.html" class="external-link">panel.refline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0</span>, v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">statSeries</span><span class="op">)</span><span class="op">)</span>, under<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="tutorial_files/figure-html/r2-breaks-plot-1.png" alt="Performance statistics plotted over time in regular 2 year blocks. The runoff coefficient and observed streamflow data are also shown." width="700"><p class="caption">
 Performance statistics plotted over time in regular 2 year blocks. The runoff coefficient and observed streamflow data are also shown.
@@ -526,14 +523,14 @@ Performance statistics plotted over time in regular 2 year blocks. The runoff co
 </div>
 <p><em>To plot the flow duration curve for modelled vs observed data in the calibration period:</em></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">qqmath</span><span class="op">(</span><span class="va">cotterFit</span>, scales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>,<span class="st">"g"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/qqmath.html" class="external-link">qqmath</a></span><span class="op">(</span><span class="va">cotterFit</span>, scales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>,<span class="st">"g"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><em>To plot a flow duration curve for each of the simulated models:</em></p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">qqmath</span><span class="op">(</span><span class="va">allMods</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>,<span class="st">"g"</span><span class="op">)</span>, 
-       scales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/qqmath.html" class="external-link">qqmath</a></span><span class="op">(</span><span class="va">allMods</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>,<span class="st">"g"</span><span class="op">)</span>, 
+       scales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,
        xlab <span class="op">=</span> <span class="st">"Standard normal variate"</span>,
        ylab <span class="op">=</span> <span class="st">"Flow (mm/day)"</span>, 
-       f.value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/ppoints.html">ppoints</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, tails.n <span class="op">=</span> <span class="fl">50</span>,
+       f.value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/ppoints.html" class="external-link">ppoints</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, tails.n <span class="op">=</span> <span class="fl">50</span>,
        as.table <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="tutorial_files/figure-html/fdc-plot-1.png" alt="Log-normal Daily Flow Duration Curve for models in simulation." width="700"><p class="caption">
@@ -541,29 +538,29 @@ Log-normal Daily Flow Duration Curve for models in simulation.
 </p>
 </div>
 <!-- Up to line 553 - Model and Calibration Options -->
-<div id="model-and-calibration-options" class="section level2">
-<h2 class="hasAnchor">
-<a href="#model-and-calibration-options" class="anchor"></a>Model and Calibration Options</h2>
+<div class="section level2">
+<h2 id="model-and-calibration-options">Model and Calibration Options<a class="anchor" aria-label="anchor" href="#model-and-calibration-options"></a>
+</h2>
 <p>There are several extensions to the basic model used so far. With different types of data, such as very dry or wet catchments, sub-daily time steps, poor areal rainfall estimates, cases of baseflow loss to groundwater, etc, different models or calibration methods will need to be used.</p>
-<div id="model-structure-and-parameter-ranges" class="section level3">
-<h3 class="hasAnchor">
-<a href="#model-structure-and-parameter-ranges" class="anchor"></a>Model Structure and Parameter Ranges</h3>
+<div class="section level3">
+<h3 id="model-structure-and-parameter-ranges">Model Structure and Parameter Ranges<a class="anchor" aria-label="anchor" href="#model-structure-and-parameter-ranges"></a>
+</h3>
 <p>We have used an <code>ihacres()</code> CWI model in this tutorial, which is a simple metric type model. Other SMA models are included in the package, or one can define a new model. See the user manual for details.</p>
-<p>Ranges of parameters to search when calibrating the effective rainfall model can be specified as arguments to the <strong>hydromad</strong> or <code><a href="https://rdrr.io/r/stats/update.html">update()</a></code> functions. Alternatively, parameters can be fixed to a given value by specifying a single number.</p>
+<p>Ranges of parameters to search when calibrating the effective rainfall model can be specified as arguments to the <strong>hydromad</strong> or <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">update()</a></code> functions. Alternatively, parameters can be fixed to a given value by specifying a single number.</p>
 <p>The default ranges can be seen, and set, using the function <code><a href="../reference/hydromad.options.html">hydromad.options()</a></code>.</p>
 <p>The example, in the CWI model, the threshold parameter <code>l</code> (used for intermittent or ephemeral rivers), defaults to a fixed value of 0. To allow calibration of this parameter, specify a numerical range. Similarly, the evapo-transpiration coefficient <code>e</code> defaults to the range <span class="math inline">\([0.01,1.5]\)</span>; to fix it to a given value, just specify it:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span><span class="va">ts90s</span>, sma <span class="op">=</span> <span class="st">"cwi"</span>, l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span><span class="op">)</span>, e <span class="op">=</span> <span class="fl">0.166</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span><span class="va">ts90s</span>, sma <span class="op">=</span> <span class="st">"cwi"</span>, l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span><span class="op">)</span>, e <span class="op">=</span> <span class="fl">0.166</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="optimisation-settings" class="section level3">
-<h3 class="hasAnchor">
-<a href="#optimisation-settings" class="anchor"></a>Optimisation settings</h3>
+<div class="section level3">
+<h3 id="optimisation-settings">Optimisation settings<a class="anchor" aria-label="anchor" href="#optimisation-settings"></a>
+</h3>
 <p>Each of the fitting functions has several options, and the help pages should be consulted for details. An important option is the choice of objective function; see the discussion above about how to specify it.</p>
 <p>In the simple cases of using <code>fitBySampling</code> or <code>fitByOptim</code>, the argument <code>samples</code> specifies how many random parameter sets will be sampled (from the predefined parameter ranges), and argument <code>sampletype</code> chooses “Uniform Random”, “Latin Hypercube”, or “all combinations” (a regular grid of values). The one model with best objective function value is chosen. In the case of <code>fitByOptim</code> this is then improved locally with an optimisation algorithm.</p>
 </div>
-<div id="unit-hydrograph-transfer-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#unit-hydrograph-transfer-functions" class="anchor"></a>Unit Hydrograph Transfer Functions</h3>
+<div class="section level3">
+<h3 id="unit-hydrograph-transfer-functions">Unit Hydrograph Transfer Functions<a class="anchor" aria-label="anchor" href="#unit-hydrograph-transfer-functions"></a>
+</h3>
 <p>A typical unit hydrograph model, at least in  models, is a linear <em>transfer function</em>, i.e. an ARMAX-like (Autoregressive, Moving Average, with eXogenous inputs). This can often, but not always, be formulated mathematically as a set of exponentially receding stores, which may be in a parallel and/or series configuration. ARMAX-type models are specified by the number of auto-regressive terms <span class="math inline">\(n\)</span> and the number of moving average terms <span class="math inline">\(m\)</span>. For example, a model with one store is <span class="math inline">\((n=1,m=0)\)</span>; two stores in parallel is <span class="math inline">\((n=2, m=1)\)</span>; two stores and an instantaneous store in parallel is <span class="math inline">\((n=2, m=2)\)</span>. Three stores in parallel is <span class="math inline">\((n=3,m=2)\)</span>.</p>
 <p>When using <code>armax</code> or <code>expuh</code> routing, specialised methods are available to estimate for calibration, such as the <code>SRIV</code> (Simple Refined Instrumental Variable) algorithm. These are specified using the <code>rfit</code> argument.</p>
 <p>The order of the transfer function may be varied, as well as the delay time. If there is any ambiguity in choosing the best delay time, each possibility should be tried.</p>
@@ -572,9 +569,9 @@ Log-normal Daily Flow Duration Curve for models in simulation.
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ihSpec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span><span class="va">ts90s</span>, sma <span class="op">=</span> <span class="st">"cwi"</span>, tw <span class="op">=</span> <span class="fl">10</span>, f <span class="op">=</span> <span class="fl">1</span>, 
                    routing <span class="op">=</span> <span class="st">"armax"</span><span class="op">)</span>
-<span class="va">osumm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tryModelOrders.html">tryModelOrders</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">ihSpec</span>, rfit <span class="op">=</span> <span class="st">"sriv"</span><span class="op">)</span>,
+<span class="va">osumm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tryModelOrders.html">tryModelOrders</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">ihSpec</span>, rfit <span class="op">=</span> <span class="st">"sriv"</span><span class="op">)</span>,
                         n <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">3</span>, m <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">3</span>, delay <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">osumm</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">osumm</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Fit and information statistics from fitting different unit hydrograph transfer functions with SRIV algorithm. ARPE is the Average Relative Parameter Error estimated by SRIV. The effective rainfall input was generated by an <code>ihacres</code> CWI model with fixed parameters.</caption>
 <thead><tr class="header">
@@ -647,17 +644,17 @@ Log-normal Daily Flow Duration Curve for models in simulation.
 </tbody>
 </table>
 </div>
-<div id="unit-hydrograph-inverse-fitting-methods" class="section level3">
-<h3 class="hasAnchor">
-<a href="#unit-hydrograph-inverse-fitting-methods" class="anchor"></a>Unit Hydrograph Inverse Fitting Methods</h3>
+<div class="section level3">
+<h3 id="unit-hydrograph-inverse-fitting-methods">Unit Hydrograph Inverse Fitting Methods<a class="anchor" aria-label="anchor" href="#unit-hydrograph-inverse-fitting-methods"></a>
+</h3>
 <p>Unit Hydrograph routing models are typically fitted using least squares or SRIV algorithms, but this depends on the modelled effective rainfall, and so must be continuously re-fitted while calibrating the SMA model. One alternative is to fit the unit hydrograph to the observed streamflow data directly – though usually constrained by rainfall – and then use that as a fixed component while calibrating the SMA model. This can be done using an inverse filtering method with <code>rfit = list("inverse", ...)</code>. (There are many options here also).</p>
 <p>Other such inverse fitting methods are possible, e.g. average event unit hydrograph estimation, but are not currently implemented in this package.</p>
 </div>
-<div id="other-options" class="section level3">
-<h3 class="hasAnchor">
-<a href="#other-options" class="anchor"></a>Other Options</h3>
-<p>If model calibration is failing, you can set <code><a href="../reference/hydromad.options.html">hydromad.options(trace = TRUE)</a></code> and/or <code><a href="../reference/hydromad.options.html">hydromad.options(catch.errors = FALSE)</a></code> to track down what is happening.</p>
-<p>It is sometimes useful to look at the model state variables, available as <code><a href="https://rdrr.io/r/stats/predict.html">predict(mod, return_state = TRUE)</a></code> (for the SMA model), or <code><a href="https://rdrr.io/r/stats/predict.html">predict(mod, return_components = TRUE)</a></code> (for the routing model), to see if they look sensible.</p>
+<div class="section level3">
+<h3 id="other-options">Other Options<a class="anchor" aria-label="anchor" href="#other-options"></a>
+</h3>
+<p>If model calibration is failing, you can set <code>hydromad.options(trace = TRUE)</code> and/or <code>hydromad.options(catch.errors = FALSE)</code> to track down what is happening.</p>
+<p>It is sometimes useful to look at the model state variables, available as <code>predict(mod, return_state = TRUE)</code> (for the SMA model), or <code>predict(mod, return_components = TRUE)</code> (for the routing model), to see if they look sensible.</p>
 <p>Some other things to try are</p>
 <ul>
 <li>using different calibration periods;<br>
@@ -668,23 +665,23 @@ Log-normal Daily Flow Duration Curve for models in simulation.
 </ul>
 </div>
 </div>
-<div id="what-next" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-next" class="anchor"></a>What Next?</h2>
+<div class="section level2">
+<h2 id="what-next">What Next?<a class="anchor" aria-label="anchor" href="#what-next"></a>
+</h2>
 <p>This document has described only a basic model fitting process.</p>
 <!--An overview of the available models and options is given in the user
 manual, which can be accessed as `vignette("hydromad")`.-->
-<p>Help pages are available for most functions, and these are also available online at <a href="http://hydromad.catchment.org/">http://hydromad.catchment.org/</a>. There is also a set of demos: see <code><a href="https://rdrr.io/r/utils/demo.html">demo(package = "hydromad")</a></code> for a list.</p>
+<p>Help pages are available for most functions, and these are also available online at <a href="http://hydromad.catchment.org/" class="external-link">http://hydromad.catchment.org/</a>. There is also a set of demos: see <code>demo(package = "hydromad")</code> for a list.</p>
 <p>Please discuss any problems or suggestions with the package maintainer.</p>
 </div>
 </div>
-<div id="appendix" class="section level1">
-<h1 class="hasAnchor">
-<a href="#appendix" class="anchor"></a>Appendix</h1>
-<div id="reading-in-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reading-in-data" class="anchor"></a>Reading in data</h2>
-<p>The required input data files for this tutorial are included with the <strong>hydromad</strong> package, in the <code>doc</code> directory. Note that the processed data is available directly in <code>R</code> – just type <code><a href="https://rdrr.io/r/utils/data.html">data(Cotter)</a></code> – but this section shows how to read it in from text files as an exercise.</p>
+<div class="section level1">
+<h1 id="appendix">Appendix<a class="anchor" aria-label="anchor" href="#appendix"></a>
+</h1>
+<div class="section level2">
+<h2 id="reading-in-data">Reading in data<a class="anchor" aria-label="anchor" href="#reading-in-data"></a>
+</h2>
+<p>The required input data files for this tutorial are included with the <strong>hydromad</strong> package, in the <code>doc</code> directory. Note that the processed data is available directly in <code>R</code> – just type <code>data(Cotter)</code> – but this section shows how to read it in from text files as an exercise.</p>
 <p>A few simple steps are required to import and convert the data into a usable form:<br>
 - extracting dates from the files,<br>
 - converting streamflow from ML/day to mm/day,<br>
@@ -692,76 +689,76 @@ manual, which can be accessed as `vignette("hydromad")`.-->
 - and aligning the three time series in a common time period.</p>
 <p>Let’s first view the content of one of the input files. Set the working directory to where the data file is:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/file.show.html">file.show</a></span><span class="op">(</span><span class="st">"data/pq_cotter.csv"</span><span class="op">)</span></code></pre></div>
-<pre><code>## -99,49.8405,3/01/1964
-## -99,48.5998,4/01/1964
-## -99,46.3199,5/01/1964
-## -99,44.5028,6/01/1964
-## -99,41.9241,7/01/1964
-## ...</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/file.show.html" class="external-link">file.show</a></span><span class="op">(</span><span class="st">"data/pq_cotter.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## -99,49.8405,3/01/1964</span>
+<span class="co">## -99,48.5998,4/01/1964</span>
+<span class="co">## -99,46.3199,5/01/1964</span>
+<span class="co">## -99,44.5028,6/01/1964</span>
+<span class="co">## -99,41.9241,7/01/1964</span>
+<span class="co">## ...</span></code></pre>
 <p>There is no header in the file, but we know that the columns represent rainfall (P), streamflow (Q) and date of observation. The temperature file is similar. Knowing the format and columns we can use <code>read.table</code> to import the data:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## rain and flow data</span>
-<span class="va">pqdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/pq_cotter.csv"</span>, sep <span class="op">=</span> <span class="st">","</span>,
-                    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"P"</span>, <span class="st">"Q"</span>, <span class="st">"Date"</span><span class="op">)</span>, as.is <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">pqdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"data/pq_cotter.csv"</span>, sep <span class="op">=</span> <span class="st">","</span>,
+                    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P"</span>, <span class="st">"Q"</span>, <span class="st">"Date"</span><span class="op">)</span>, as.is <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">## temperature data</span>
-<span class="va">tdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/t_cotter.csv"</span>, sep <span class="op">=</span> <span class="st">","</span>,
-                   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"T"</span>, <span class="st">"Date"</span><span class="op">)</span>, as.is <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="va">tdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"data/t_cotter.csv"</span>, sep <span class="op">=</span> <span class="st">","</span>,
+                   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"T"</span>, <span class="st">"Date"</span><span class="op">)</span>, as.is <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>and view the structure of the resulting data frames:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">)</span></code></pre></div>
-<pre><code>## 'data.frame':    15339 obs. of  3 variables:
-##  $ P   : num  -99 -99 -99 -99 -99 -99 -99 -99 -99 -99 ...
-##  $ Q   : num  49.8 48.6 46.3 44.5 41.9 ...
-##  $ Date: chr  "3/01/1964" "4/01/1964" "5/01/1964" "6/01/1964" ...</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## 'data.frame':    15339 obs. of  3 variables:</span>
+<span class="co">##  $ P   : num  -99 -99 -99 -99 -99 -99 -99 -99 -99 -99 ...</span>
+<span class="co">##  $ Q   : num  49.8 48.6 46.3 44.5 41.9 ...</span>
+<span class="co">##  $ Date: chr  "3/01/1964" "4/01/1964" "5/01/1964" "6/01/1964" ...</span></code></pre>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">tdat</span><span class="op">)</span></code></pre></div>
-<pre><code>## 'data.frame':    15467 obs. of  2 variables:
-##  $ T   : num  28.8 29.4 32.8 35.7 37.2 22.9 25.5 23.8 23.7 24.9 ...
-##  $ Date: chr  "3/01/1964" "4/01/1964" "5/01/1964" "6/01/1964" ...</code></pre>
-<p>So far, the <code>Date</code> columns are only text; <code>R</code> does not know they are dates. We need to specify the date format, where <code>\%d</code> is day, <code>\%m</code> is month number, <code>\%b</code> is month name, <code>\%Y</code> is four-digit year and <code>\%y</code> is two-digit year (see <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code>).</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">tdat</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## 'data.frame':    15467 obs. of  2 variables:</span>
+<span class="co">##  $ T   : num  28.8 29.4 32.8 35.7 37.2 22.9 25.5 23.8 23.7 24.9 ...</span>
+<span class="co">##  $ Date: chr  "3/01/1964" "4/01/1964" "5/01/1964" "6/01/1964" ...</span></code></pre>
+<p>So far, the <code>Date</code> columns are only text; <code>R</code> does not know they are dates. We need to specify the date format, where <code>\%d</code> is day, <code>\%m</code> is month number, <code>\%b</code> is month name, <code>\%Y</code> is four-digit year and <code>\%y</code> is two-digit year (see <code><a href="https://rdrr.io/r/base/strptime.html" class="external-link">?strptime</a></code>).</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span>, <span class="st">"%d/%m/%Y"</span><span class="op">)</span>
-<span class="va">tdat</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">tdat</span><span class="op">$</span><span class="va">Date</span>, <span class="st">"%d/%m/%Y"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span>, <span class="st">"%d/%m/%Y"</span><span class="op">)</span>
+<span class="va">tdat</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">tdat</span><span class="op">$</span><span class="va">Date</span>, <span class="st">"%d/%m/%Y"</span><span class="op">)</span></code></pre></div>
 <p>If the day, month and year were in separate columns of the file, with names <code>"day"</code>, <code>"mon"</code> and <code>"yr"</code> then you could do something like:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">pqdat</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ISOdatetime.html">ISOdate</a></span><span class="op">(</span><span class="va">yr</span>, <span class="va">mon</span>, <span class="va">day</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>If you have sub-daily time steps, a good choice is to use the <code>chron()</code> function from the <a href="https://cran.r-project.org/package=chron">chron</a> package to represent the time index.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<code class="sourceCode R"><span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pqdat</span>, <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ISOdatetime.html" class="external-link">ISOdate</a></span><span class="op">(</span><span class="va">yr</span>, <span class="va">mon</span>, <span class="va">day</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>If you have sub-daily time steps, a good choice is to use the <code>chron()</code> function from the <a href="https://cran.r-project.org/package=chron" class="external-link">chron</a> package to represent the time index.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>Negative values (-99) in the <em>pq</em> input file represent missing data; in <code>R</code> they should be set to the special value <code>NA</code>. Also, some dates in the temperature file are blank, and need to be removed.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pqdat</span><span class="op">$</span><span class="va">P</span><span class="op">[</span><span class="va">pqdat</span><span class="op">$</span><span class="va">P</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 <span class="va">pqdat</span><span class="op">$</span><span class="va">Q</span><span class="op">[</span><span class="va">pqdat</span><span class="op">$</span><span class="va">Q</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-<span class="va">tdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tdat</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">tdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">tdat</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The <strong>hydromad</strong> model fitting functions require that rainfall and streamflow are given in the same units, typically mm / day. The streamflow data in our input file is measured in ML / day, so we need to convert it, supplying the catchment area of 148 km<span class="math inline">\(^2\)</span>.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pqdat</span><span class="op">$</span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/convertFlow.html">convertFlow</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">$</span><span class="va">Q</span>, from <span class="op">=</span> <span class="st">"ML"</span>, area.km2 <span class="op">=</span> <span class="fl">148</span><span class="op">)</span></code></pre></div>
-<p>For simple applications, when the data series are already synchronised, this data frame (or matrix) format may be enough. However, there are benefits in working with actual <em>time series</em> objects: because they handle observation times, they allow powerful merging, treatment of missing values, rolling averages and other functions. While <code>R</code> has a built-in structure for regular time series (<code>ts</code>), these do not handle specific dates or times, only index numbers. It is recommended to work with <code>zoo</code> objects (using the <a href="https://cran.r-project.org/package=zoo">zoo</a> package).^[<a href="https://cran.r-project.org/package=zoo">zoo</a> objects are a generalisation of <code>ts</code> objects and in many cases can be used in the same way; see <code><a href="https://cran.rstudio.com/web/packages/zoo/vignettes/zoo.pdf">vignette("zoo")</a></code>.}</p>
+<p>For simple applications, when the data series are already synchronised, this data frame (or matrix) format may be enough. However, there are benefits in working with actual <em>time series</em> objects: because they handle observation times, they allow powerful merging, treatment of missing values, rolling averages and other functions. While <code>R</code> has a built-in structure for regular time series (<code>ts</code>), these do not handle specific dates or times, only index numbers. It is recommended to work with <code>zoo</code> objects (using the <a href="https://cran.r-project.org/package=zoo" class="external-link">zoo</a> package).^[<a href="https://cran.r-project.org/package=zoo" class="external-link">zoo</a> objects are a generalisation of <code>ts</code> objects and in many cases can be used in the same way; see <code><a href="https://cran.rstudio.com/web/packages/zoo/vignettes/zoo.pdf" class="external-link">vignette("zoo")</a></code>.}</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://zoo.R-Forge.R-project.org/">zoo</a></span><span class="op">)</span>
-<span class="va">tsPQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/zoo.html">zoo</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">tsT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/zoo.html">zoo</a></span><span class="op">(</span><span class="va">tdat</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">tdat</span><span class="op">$</span><span class="va">Date</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://zoo.R-Forge.R-project.org/" class="external-link">zoo</a></span><span class="op">)</span>
+<span class="va">tsPQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/zoo.html" class="external-link">zoo</a></span><span class="op">(</span><span class="va">pqdat</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">pqdat</span><span class="op">$</span><span class="va">Date</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">tsT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/zoo.html" class="external-link">zoo</a></span><span class="op">(</span><span class="va">tdat</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">tdat</span><span class="op">$</span><span class="va">Date</span>, frequency <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p>We can now merge the time series together into a final dataset. Note that the <strong>hydromad</strong> package expects temperature or evapo-transpiration data to be called <code>E</code>, not <code>T</code>. <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Cotter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">tsPQ</span>, E <span class="op">=</span> <span class="va">tsT</span>, all <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">Cotter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">tsPQ</span>, E <span class="op">=</span> <span class="va">tsT</span>, all <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Print the first few rows (the <em>head</em>) of the time series, to check that everything looks OK:</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Cotter</span>, <span class="fl">6</span><span class="op">)</span></code></pre></div>
-<pre><code>##             P         Q    E
-## 1964-01-03 NA 0.3367601 28.8
-## 1964-01-04 NA 0.3283770 29.4
-## 1964-01-05 NA 0.3129723 32.8
-## 1964-01-06 NA 0.3006946 35.7
-## 1964-01-07 NA 0.2832709 37.2
-## 1964-01-08 NA 0.2909014 22.9</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Cotter</span>, <span class="fl">6</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##             P         Q    E</span>
+<span class="co">## 1964-01-03 NA 0.3367601 28.8</span>
+<span class="co">## 1964-01-04 NA 0.3283770 29.4</span>
+<span class="co">## 1964-01-05 NA 0.3129723 32.8</span>
+<span class="co">## 1964-01-06 NA 0.3006946 35.7</span>
+<span class="co">## 1964-01-07 NA 0.2832709 37.2</span>
+<span class="co">## 1964-01-08 NA 0.2909014 22.9</span></code></pre>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/time.html">time</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "1964-01-03" "2005-12-31"</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/time.html" class="external-link">time</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] "1964-01-03" "2005-12-31"</span></code></pre>
 <p>This shows that the rainfall data has missing values at the beginning. At the other end of the series, Streamflow data is missing. This will not cause a problem, but let us tidy it up anyway:</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Cotter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/na.trim.html">na.trim</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">Cotter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/na.trim.html" class="external-link">na.trim</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
 <p>The final dataset extends from 1966-05-01 to 2003-06-12, and is shown in Figure @ref(fig:dataplot) and Table @ref(tab:datasummary):</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">Cotter</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Data summary. P = precipitation (mm/day), E = temperature (deg. C), Q = streamflow (mm/day).</caption>
 <thead><tr class="header">
@@ -817,10 +814,10 @@ manual, which can be accessed as `vignette("hydromad")`.-->
 </table>
 </div>
 </div>
-<div id="computational-details" class="section level1">
-<h1 class="hasAnchor">
-<a href="#computational-details" class="anchor"></a>Computational details</h1>
-<p>The results in this paper were obtained using <code>R</code> 4.0.4 with the packages <strong>hydromad</strong> 0.9–26, <code>zoo</code> 1.8–9 and <code>latticeExtra</code> 0.6–29. <code>R</code> itself and all packages used are (or will be) available from CRAN at <a href="http://CRAN.R-project.org/">http://CRAN.R-project.org/</a>.</p>
+<div class="section level1">
+<h1 id="computational-details">Computational details<a class="anchor" aria-label="anchor" href="#computational-details"></a>
+</h1>
+<p>The results in this paper were obtained using <code>R</code> 4.1.2 with the packages <strong>hydromad</strong> 0.9–27, <code>zoo</code> 1.8–9 and <code>latticeExtra</code> 0.6–29. <code>R</code> itself and all packages used are (or will be) available from CRAN at <a href="http://CRAN.R-project.org/" class="external-link">http://CRAN.R-project.org/</a>.</p>
 </div>
 <div class="footnotes">
 <hr>
@@ -843,11 +840,13 @@ manual, which can be accessed as `vignette("hydromad")`.-->
 
 
       <footer><div class="copyright">
-  <p>Developed by Joseph Guillaume.</p>
+  <p></p>
+<p>Developed by Joseph Guillaume.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -855,6 +854,8 @@ manual, which can be accessed as `vignette("hydromad")`.-->
 
   
 
+
+  
 
   </body>
 </html>

@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hydromad</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9-27</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/hydromad.html">Get started</a>
 </li>
@@ -73,10 +69,11 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
-      <a href="http://github.com/josephguillaume/hydromad">hydromad 0.9-27</a>
+      <a href="http://github.com/josephguillaume/hydromad" class="external-link">hydromad 0.9-27</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="../news/index.html">Changelog</a>
     </li>
   </ul>
@@ -84,7 +81,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/josephguillaume/hydromad/">
+  <a href="https://github.com/josephguillaume/hydromad/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -103,20 +100,20 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>HBV model</h1>
-                        <h4 class="author">Alexander Buzacott</h4>
+                        <h4 data-toc-skip class="author">Alexander Buzacott</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/josephguillaume/hydromad/blob/master/vignettes/hbv.Rmd"><code>vignettes/hbv.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/josephguillaume/hydromad/blob/HEAD/vignettes/hbv.Rmd" class="external-link"><code>vignettes/hbv.Rmd</code></a></small>
       <div class="hidden name"><code>hbv.Rmd</code></div>
 
     </div>
 
     
     
-<p>The HBV model included in <code>hydromad</code> implements the basic structure of the HBV-light by Seibert and Vis (2012). This tutorial will demonstrate how to use the <code>hydromad</code> HBV model and compare the output to the HBV-light model (v4.0.0.20, obtained from <a href="https://www.geo.uzh.ch/en/units/h2k/Services/HBV-Model.html" class="uri">https://www.geo.uzh.ch/en/units/h2k/Services/HBV-Model.html</a>).</p>
-<div id="data-requirements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data-requirements" class="anchor"></a>Data requirements</h2>
+<p>The HBV model included in <code>hydromad</code> implements the basic structure of the HBV-light by Seibert and Vis (2012). This tutorial will demonstrate how to use the <code>hydromad</code> HBV model and compare the output to the HBV-light model (v4.0.0.20, obtained from <a href="https://www.geo.uzh.ch/en/units/h2k/Services/HBV-Model.html" class="external-link uri">https://www.geo.uzh.ch/en/units/h2k/Services/HBV-Model.html</a>).</p>
+<div class="section level2">
+<h2 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a>
+</h2>
 <p>Most of the required data for the model are similar to standard hydromad:</p>
 <ul>
 <li>P: timeseries of precipitation (mm)</li>
@@ -131,13 +128,13 @@
 </ul>
 <p>A vector of length 12 or 365 of mean temperature can also be provided for use in calculating PET. If it is not provided then mean monthly temperature is calculated from the timeseries of temperature. A demonstration of using the HBV PET method is provided later.</p>
 </div>
-<div id="model-parameters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#model-parameters" class="anchor"></a>Model parameters</h2>
+<div class="section level2">
+<h2 id="model-parameters">Model parameters<a class="anchor" aria-label="anchor" href="#model-parameters"></a>
+</h2>
 <p>The structure of the model in <code>hydromad</code> replicates the HBV-light standard version using UZL and K0 in SUZ-box.</p>
-<div id="snow-routine" class="section level3">
-<h3 class="hasAnchor">
-<a href="#snow-routine" class="anchor"></a>Snow routine</h3>
+<div class="section level3">
+<h3 id="snow-routine">Snow routine<a class="anchor" aria-label="anchor" href="#snow-routine"></a>
+</h3>
 <ul>
 <li>
 <code>tt</code> Threshold temperature for snow and snow melt in degrees Celsius.</li>
@@ -151,9 +148,9 @@
 <code>cwh</code> Liquid water holding capacity of the snowpack.</li>
 </ul>
 </div>
-<div id="soil-routine" class="section level3">
-<h3 class="hasAnchor">
-<a href="#soil-routine" class="anchor"></a>Soil routine</h3>
+<div class="section level3">
+<h3 id="soil-routine">Soil routine<a class="anchor" aria-label="anchor" href="#soil-routine"></a>
+</h3>
 <ul>
 <li>
 <code>fc</code> Maximum amount of soil moisture storage (mm).</li>
@@ -166,9 +163,9 @@
 </ul>
 <p>In addition there is an optional flag <code>initialise_sm</code> to set the soil moisture store to equal <code>fc</code>*<code>lp</code> at the first timestep to match HBV-light behaviour. The default is false to match other <code>hydromad</code> models.</p>
 </div>
-<div id="routing-routine" class="section level3">
-<h3 class="hasAnchor">
-<a href="#routing-routine" class="anchor"></a>Routing routine</h3>
+<div class="section level3">
+<h3 id="routing-routine">Routing routine<a class="anchor" aria-label="anchor" href="#routing-routine"></a>
+</h3>
 <ul>
 <li>
 <code>perc</code> Maximum percolation from upper to lower groundwater storage.</li>
@@ -186,9 +183,9 @@
 <p>An additional model setting <code>initial_slz</code> can be used to set the initial value for the lower groundwater store (SLZ). This appears to equal the first streamflow timestep value divided by the <code>k2</code> parameter in HBV-light but can be set to any value.</p>
 </div>
 </div>
-<div id="state-variables" class="section level2">
-<h2 class="hasAnchor">
-<a href="#state-variables" class="anchor"></a>State variables</h2>
+<div class="section level2">
+<h2 id="state-variables">State variables<a class="anchor" aria-label="anchor" href="#state-variables"></a>
+</h2>
 <p>The following state variables can be returned from the model:</p>
 <ul>
 <li>Soil moisture accounting (<code>sma="hbv"</code>) module
@@ -223,20 +220,20 @@
 </li>
 </ul>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>This example uses the example dataset from the Corin Catchment, ACT, Australia which is included with <code>hydromad</code>. This dataset is a <code>zoo</code> object that contains daily estimates of all the required variables.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">Corin</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Corin</span><span class="op">)</span></code></pre></div>
-<pre><code>##               P      Q    E    T
-## 2016-01-01 0.00 0.1152 7.87 21.4
-## 2016-01-02 0.00 0.1170 4.50 17.9
-## 2016-01-03 3.90 0.1264 3.97 16.1
-## 2016-01-04 6.33 0.1799 2.64 13.7
-## 2016-01-05 9.48 0.3879 2.41 13.7
-## 2016-01-06 0.00 0.3033 3.37 14.3</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Corin</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Corin</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##               P      Q    E    T</span>
+<span class="co">## 2016-01-01 0.00 0.1152 7.87 21.4</span>
+<span class="co">## 2016-01-02 0.00 0.1170 4.50 17.9</span>
+<span class="co">## 2016-01-03 3.90 0.1264 3.97 16.1</span>
+<span class="co">## 2016-01-04 6.33 0.1799 2.64 13.7</span>
+<span class="co">## 2016-01-05 9.48 0.3879 2.41 13.7</span>
+<span class="co">## 2016-01-06 0.00 0.3033 3.37 14.3</span></code></pre>
 <p>Set up and fit model. If the parameters or parameter ranges are not specified then the default ranges for <code>hbv</code> and <code>hbvrouting</code> are used. These can be viewed using <code><a href="../reference/hbv.html">hbv.ranges()</a></code> and <code><a href="../reference/hbv.html">hbvrouting.ranges()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span>DATA <span class="op">=</span> <span class="va">Corin</span>,
@@ -246,42 +243,42 @@
 <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitByOptim.html">fitByOptim</a></span><span class="op">(</span><span class="va">mod</span>, method <span class="op">=</span> <span class="st">"PORT"</span><span class="op">)</span></code></pre></div>
 <p>A summary of the model fit and plot of the simulated and modelled streamflow series can be obtained as follows.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## hydromad(DATA = Corin, sma = "hbv", routing = "hbvrouting", perc = 0.798432, 
-##     uzl = 15.4616, k0 = 0.100156, k1 = 0.125015, k2 = 0.040413, 
-##     maxbas = 1.50607, tt = 0.328283, cfmax = 2.27273, sfcf = 0.430303, 
-##     cfr = 0.0191919, cwh = 0.187879, fc = 312.218, lp = 0.898577, 
-##     beta = 2.69746)
-## 
-## Time steps: 1361 (0 missing).
-## Runoff ratio (Q/P): (0.4495 / 2.315) = 0.1942
-## rel bias: -0.02689
-## r squared: 0.9157
-## r sq sqrt: 0.9157
-## r sq log: 0.8606
-## 
-## For definitions see ?hydromad.stats</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## hydromad(DATA = Corin, sma = "hbv", routing = "hbvrouting", perc = 0.798432, </span>
+<span class="co">##     uzl = 15.4616, k0 = 0.100156, k1 = 0.125015, k2 = 0.040413, </span>
+<span class="co">##     maxbas = 1.50607, tt = 0.328283, cfmax = 2.27273, sfcf = 0.430303, </span>
+<span class="co">##     cfr = 0.0191919, cwh = 0.187879, fc = 312.218, lp = 0.898577, </span>
+<span class="co">##     beta = 2.69746)</span>
+<span class="co">## </span>
+<span class="co">## Time steps: 1361 (0 missing).</span>
+<span class="co">## Runoff ratio (Q/P): (0.4495 / 2.315) = 0.1942</span>
+<span class="co">## rel bias: -0.02689</span>
+<span class="co">## r squared: 0.9157</span>
+<span class="co">## r sq sqrt: 0.9157</span>
+<span class="co">## r sq log: 0.8606</span>
+<span class="co">## </span>
+<span class="co">## For definitions see ?hydromad.stats</span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">xyplot</span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lattice/man/xyplot.html" class="external-link">xyplot</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></code></pre></div>
 <p><img src="hbv_files/figure-html/modplot-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>To calculate PET using the method (Seibert and Vis, 2012; equation 7), a list with named objects <code>"PET"</code> and <code>"Tmean"</code> need to be supplied to the <code>PET</code> argument when setting up the model. In addition, the <code>cet</code> parameter needs to be provided. Either a single value or a range can be provided if <code>cet</code> is to be calibrated.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span>DATA <span class="op">=</span> <span class="va">Corin</span>,
                 sma <span class="op">=</span> <span class="st">"hbv"</span>,
                 routing <span class="op">=</span> <span class="st">"hbvrouting"</span>,
-                PET <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"PET"</span> <span class="op">=</span> <span class="va">corin_pet</span>,
+                PET <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"PET"</span> <span class="op">=</span> <span class="va">corin_pet</span>,
                            <span class="st">"Tmean"</span> <span class="op">=</span> <span class="va">corin_tmean</span><span class="op">)</span>,
-                cet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/zC.html">C</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+                cet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/zC.html" class="external-link">C</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="comparison-to-hbv-light" class="section level1">
-<h1 class="hasAnchor">
-<a href="#comparison-to-hbv-light" class="anchor"></a>Comparison to HBV-light</h1>
+<div class="section level1">
+<h1 id="comparison-to-hbv-light">Comparison to HBV-light<a class="anchor" aria-label="anchor" href="#comparison-to-hbv-light"></a>
+</h1>
 <p>Here are some comparisons to output of the HBV-light model to ensure that correct model structures have been implemented. Comparisons are made using the Corin catchment dataset and the HBV-land dataset that comes with the HBV-light model. No warmup periods are used here to show the models produce the same results, but typically warm up periods range from 100 days (<code>hydromad</code> default) to a year.</p>
-<div id="corin-catchment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#corin-catchment" class="anchor"></a>Corin catchment</h2>
+<div class="section level2">
+<h2 id="corin-catchment">Corin catchment<a class="anchor" aria-label="anchor" href="#corin-catchment"></a>
+</h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span>DATA <span class="op">=</span> <span class="va">Corin</span>,
                 sma <span class="op">=</span> <span class="st">"hbv"</span>,
@@ -307,22 +304,22 @@
                 warmup <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <p>The models produce the same results:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">value</span>, col<span class="op">=</span><span class="va">Model</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">value</span>, col<span class="op">=</span><span class="va">Model</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="hbv_files/figure-html/comparison-1.png" width="672"></p>
 <p>Only small rounding differences exist.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">diff</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">diff</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="hbv_files/figure-html/differences-1.png" width="672"></p>
 </div>
-<div id="hbv-land" class="section level2">
-<h2 class="hasAnchor">
-<a href="#hbv-land" class="anchor"></a>HBV-land</h2>
+<div class="section level2">
+<h2 id="hbv-land">HBV-land<a class="anchor" aria-label="anchor" href="#hbv-land"></a>
+</h2>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hydromad.html">hydromad</a></span><span class="op">(</span>DATA <span class="op">=</span> <span class="va">hbv_land</span>,
                 sma <span class="op">=</span> <span class="st">"hbv"</span>,
@@ -347,25 +344,25 @@
                 initialise_sm <span class="op">=</span> <span class="cn">TRUE</span>,
                 initial_slz <span class="op">=</span> <span class="va">hbv_land</span><span class="op">$</span><span class="va">Q</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">/</span> <span class="fl">0.06</span>, <span class="co"># first Q timestep / k2</span>
                 warmup <span class="op">=</span> <span class="fl">0</span>,
-                PET <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"PET"</span><span class="op">=</span><span class="va">hbv_land_pet</span>, <span class="st">"Tmean"</span> <span class="op">=</span> <span class="va">hbv_land_tmean</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+                PET <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"PET"</span><span class="op">=</span><span class="va">hbv_land_pet</span>, <span class="st">"Tmean"</span> <span class="op">=</span> <span class="va">hbv_land_tmean</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">value</span>, col<span class="op">=</span><span class="va">Model</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">value</span>, col<span class="op">=</span><span class="va">Model</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="hbv_files/figure-html/comparison2-1.png" width="672"></p>
 <p>Again there are only small rounding differences.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">diff</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">diff</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Value (mm)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="hbv_files/figure-html/differences2-1.png" width="672"></p>
 </div>
 </div>
-<div id="references" class="section level1">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level1">
+<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h1>
 <p>If you use the <code>hydromad</code> HBV model, you should cite the paper by Seibert and Vis, 2012 as well as the <code>hydromad</code> package.</p>
 <ul>
 <li>Seibert, J. and Vis, M. (2012). Teaching hydrological modeling with a user-friendly catchment-runoff-model software package. Hydrology and Earth System Sciences, 16, 3315–3325, 2012.</li>
@@ -390,11 +387,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Joseph Guillaume.</p>
+  <p></p>
+<p>Developed by Joseph Guillaume.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -402,6 +401,8 @@
 
   
 
+
+  
 
   </body>
 </html>
