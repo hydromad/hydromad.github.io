@@ -4,8 +4,7 @@ Depends: coda
 Imports: stats, utils
 Suggests: snow, R.matlab, lattice, reshape, mgcv
 Enhances: multicore, foreach, doMPI, doMC, doSNOW
-MD5sum: 6df6a34fabaefccb48772358b6b72603
-NeedsCompilation: no
+MD5sum: e948f9fb05c85b54fa1fe871e0f431d3
 
 Package: hydromad
 Version: 0.9-26-9000
@@ -17,5 +16,4 @@ Suggests: DEoptim, mgcv, chron, testthat, mco, cmaes, ppso,
         sensitivity, ggplot2, rsm, parallel, foreach, ff, dream, knitr,
         coda, iterators, patrick (>= 0.0.1), rmarkdown, bookdown
 License: GPL (>= 2)
-MD5sum: afd35c70a53bdae7451a030baae60ff4
-NeedsCompilation: yes
+MD5sum: dd0d97fa5c2506ec924084da1a85ac4b
