@@ -233,36 +233,37 @@ code, which was in turn adapted from Qingyun Duan's MATLAB code:</p>
 <span class="r-in"><span class="co"># upper &lt;- -lower</span></span>
 <span class="r-in"><span class="va">ans</span> <span class="op">&lt;-</span> <span class="fu">SCEoptim</span><span class="op">(</span><span class="va">Rosenbrock</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.2</span>, <span class="fl">1</span><span class="op">)</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Nr Iter  Nr Fun Eval    Current best function    Current worst function</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      1        73                  11.0947               2.09811e+06</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      2       130                  4.18187               1.47239e+06</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      3       189                 0.156788                   29883.1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      4       252                 0.141337                   29883.1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      5       311                0.0951102                   29883.1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      6       372                0.0203565                   29883.1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      7       430                0.0203565                   29883.1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      8       486               0.00322454                   29883.1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      9       539               0.00322454                   73.8353</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     10       588               0.00105651                   73.8353</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     11       643               0.00032012                   73.8353</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     12       696              7.11399e-05                   5.64406</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     13       748              1.70819e-05                  0.654537</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     14       801              1.12454e-05                  0.654537</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     15       855               3.2689e-06                   0.10502</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     16       904              2.70282e-06                0.00610752</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     17       957              3.04503e-08                0.00610752</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     18      1002              3.04503e-08                0.00136434</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     19      1053              3.04503e-08               0.000335164</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     20      1103              3.04503e-08               2.51551e-05</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     21      1151              2.46319e-08               5.02035e-06</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     22      1205              7.02474e-09               1.96079e-06</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     23      1258               4.2781e-09               6.90301e-08</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     24      1310              9.92463e-11               5.58692e-08</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     25      1359              6.66559e-11               3.18491e-08</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     26      1409              5.51246e-11               1.12425e-08</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     27      1457              2.00456e-11               1.12425e-08</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     28      1511              7.32305e-12               2.13848e-09</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     29      1559              2.38985e-14               1.14259e-09</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     30      1608              2.38985e-14               1.14259e-09</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      1        76                  12.7189               5.90572e+06</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      2       130                0.0790716                   91938.6</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      3       180                0.0790716                   11519.4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      4       238                0.0790716                   7756.29</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      5       299                0.0790716                   4938.58</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      6       357                0.0383434                   583.981</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      7       411                0.0202285                   459.469</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      8       463               0.00640054                   72.8587</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      9       512              0.000512332                   13.8056</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     10       567              0.000512332                   6.78692</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     11       618              0.000289162                  0.359706</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     12       671              2.64181e-05                  0.359706</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     13       720              1.22006e-05                 0.0497167</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     14       768              9.39611e-06                 0.0497167</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     15       821              2.92256e-06                 0.0398932</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     16       874              1.08368e-06                0.00634343</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     17       928              7.97997e-07                0.00231506</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     18       984              3.93934e-07                0.00231506</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     19      1040              1.60248e-08                0.00231506</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     20      1091              1.21385e-08               0.000466116</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     21      1144              7.68396e-10               0.000466116</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     22      1197              4.94091e-10               3.03208e-05</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     23      1244              2.25976e-10               3.03208e-05</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     24      1296              2.25976e-10                1.7887e-06</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     25      1352              5.63513e-11                1.7887e-06</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     26      1404              5.26145e-12                1.7887e-06</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     27      1456              3.45141e-12               4.32406e-07</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     28      1505              3.45141e-12               4.32406e-07</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     29      1555              7.13553e-13               1.09271e-07</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     30      1606              4.89783e-13               1.09271e-07</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     31      1658              9.58268e-14               2.69055e-08</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Change in solution over [tolsteps] less than specified tolerance (reltol).</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">ans</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 11</span>
@@ -282,14 +283,14 @@ code, which was in turn adapted from Qingyun Duan's MATLAB code:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ trace     : num 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ REPORT    : num 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ par        : num [1:2] 1 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ value      : num 2.39e-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ value      : num 9.58e-14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ convergence: num 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ message    : chr "Change in solution over [tolsteps] less than specified tolerance (reltol)."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ counts     : num 1608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ iterations : num 30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ time       : num 0.222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ POP.FIT.ALL: num [1:30, 1:25] 11.0947 4.1819 0.1568 0.1413 0.0951 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ BESTMEM.ALL: num [1:30, 1:2] 2.789 -0.105 1.258 1.376 1.012 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ counts     : num 1658</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ iterations : num 31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ time       : num 0.224</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ POP.FIT.ALL: num [1:31, 1:25] 12.7189 0.0791 0.0791 0.0791 0.0791 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ BESTMEM.ALL: num [1:31, 1:2] -2.56 1.06 1.06 1.06 1.06 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr [1:2] "SCEoptim" "list"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## 'Wild' function, global minimum at about -15.81515</span></span>
@@ -301,34 +302,27 @@ code, which was in turn adapted from Qingyun Duan's MATLAB code:</p>
 <span class="r-in">  control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Nr Iter  Nr Fun Eval    Current best function    Current worst function</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      1        51                  69.8359                   117.233</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      2        99                  69.8359                    86.183</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      3       140                  67.7093                   81.6037</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      4       186                  67.5784                   81.5402</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      5       228                  67.5784                   86.8253</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      6       272                  67.5784                   87.4183</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      7       316                   67.493                   87.4183</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      8       362                   67.493                   87.4183</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      9       400                   67.493                    87.379</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     10       444                   67.493                   85.4347</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     11       490                  67.4903                   87.4446</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     12       536                  67.4903                   87.4535</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     13       584                  67.4903                    87.444</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     14       626                  67.4903                   87.4657</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     15       668                  67.4903                   87.4254</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     16       704                  67.4855                    87.451</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     17       742                  67.4855                   87.4561</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     18       782                  67.4691                   86.4047</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     19       824                   67.468                   87.4646</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     20       868                   67.468                   87.3664</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     21       906                   67.468                   87.2611</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     22       946                   67.468                   87.4222</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     23       988                   67.468                   87.4483</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     24      1022                   67.468                   87.4483</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     25      1062                  67.4678                    85.119</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      1        60                  70.2357                   159.001</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      2       104                  67.7087                   137.391</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      3       154                  67.7087                   137.391</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      4       196                  67.7087                   85.5385</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      5       242                  67.7087                   85.5385</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      6       288                  67.5218                   86.4444</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      7       336                  67.5218                   87.4622</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      8       374                  67.5218                    87.271</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>      9       422                  67.5218                   87.3583</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     10       462                  67.5218                   86.3995</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     11       502                  67.5218                    84.989</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     12       542                  67.4761                   87.3014</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     13       588                  67.4761                   87.4661</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     14       628                  67.4761                   87.4661</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     15       662                  67.4761                    87.244</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     16       708                  67.4761                   87.4532</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     17       742                  67.4761                   87.1166</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     18       786                  67.4761                   87.1166</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Change in solution over [tolsteps] less than specified tolerance (reltol).</span>
 <span class="r-in"><span class="va">ans</span><span class="op">$</span><span class="va">par</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -15.81525</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -15.66244</span>
 </code></pre></div>
     </div>
   </div>
